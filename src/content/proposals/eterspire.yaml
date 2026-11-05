@@ -167,7 +167,7 @@ sections:
     title: Eterspire como Main Sponsor de IDA 2027
     intro: |
       El valor de referencia del patrocinio Main Sponsor es de **USD 5.000**. Al contratar simultáneamente un plan de comunicación con Press Over, Eterspire accede a las siguientes condiciones preferenciales:
-    columns: [Contratación de Press Over, Inversión Main Sponsor IDA 2027]
+    columns: [Contratación de Press Over, "Inversión Main Sponsor\nIDA 2027"]   # \n = line break on phones
     align: [left, right]
     rows:
       - [Sin plan de comunicación, USD 5.000]

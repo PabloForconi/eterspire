@@ -9,11 +9,13 @@ const { columns, align = [], rows, footer, notes } = Astro.props as {
   notes?: string;
 };
 const a = (i: number) => (align[i] === 'right' ? 'right' : undefined);
+// A line break in a column header only applies on narrow screens.
+const head = (c: string) => inline(c).replace(/<br>/g, '<br class="narrow-br">');
 ---
 
 <div class="table-wrap">
   <table>
-    <thead><tr>{columns.map((c, i) => <th scope="col" class={a(i)}>{c}</th>)}</tr></thead>
+    <thead><tr>{columns.map((c, i) => <th scope="col" class={a(i)} set:html={head(c)} />)}</tr></thead>
     <tbody>{rows.map((r) => <tr>{r.map((cell, i) => <td class={a(i)} set:html={inline(cell)} />)}</tr>)}</tbody>
     {footer && <tfoot><tr>{footer.map((cell, i) => <td class={a(i)} set:html={inline(cell)} />)}</tr></tfoot>}
   </table>
@@ -32,6 +34,11 @@ const a = (i: number) => (align[i] === 'right' ? 'right' : undefined);
   td.right { font: 700 14px/1.6 var(--font-display); color: var(--text); }
   :global(.tone-dark) th { background: var(--surface-2); }
   .right { text-align: right; white-space: nowrap; }
+  th :global(.narrow-br) { display: none; }
+  @media (max-width: 640px) {
+    th, td { padding: 12px 12px; }
+    th :global(.narrow-br) { display: inline; }
+  }
   tbody tr:last-child td { border-bottom: 0; }
   tfoot td { font-weight: 600; border-top: 2px solid var(--line); border-bottom: 0; background: var(--surface-2); }
   .notes { margin-top: 14px; font-size: 14px; max-width: 76ch; }
