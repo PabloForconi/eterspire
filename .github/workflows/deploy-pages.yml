@@ -1,4 +1,5 @@
-# Publishes the site to GitHub Pages: https://pabloforconi.github.io/eterspire/
+# Publishes the site to GitHub Pages at https://pabloforconi.github.io/<repo name>/
+# (the eterspire repo -> /eterspire/, eterspire-v2 -> /eterspire-v2/).
 # Builds on every push to main. Every page is noindex (see src/layouts/Proposal.astro).
 name: Deploy to GitHub Pages
 
@@ -29,7 +30,7 @@ jobs:
       - run: npm run build
         env:
           SITE_URL: https://pabloforconi.github.io
-          BASE_PATH: /eterspire
+          BASE_PATH: /${{ github.event.repository.name }}
       - uses: actions/upload-pages-artifact@v4
         with:
           path: dist

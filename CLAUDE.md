@@ -57,7 +57,10 @@ Discord https://discord.com/servers/eterspire-814967791840264232, Reddit https:/
 X https://x.com/eterspire, Instagram https://www.instagram.com/eterspiremmo/.
 
 ## Deploy
-- Public repo https://github.com/PabloForconi/eterspire. Every push to `main` builds and publishes to GitHub Pages at
-  https://pabloforconi.github.io/eterspire/ (`.github/workflows/deploy-pages.yml` sets `SITE_URL` and `BASE_PATH=/eterspire`).
+- Two public repos share this code, each published to GitHub Pages on every push to its `main`
+  (`.github/workflows/deploy-pages.yml` sets `BASE_PATH` from the repo name):
+  - branch `main` -> https://github.com/PabloForconi/eterspire -> https://pabloforconi.github.io/eterspire/ (v1 texts)
+  - branch `v2` -> https://github.com/PabloForconi/eterspire-v2 (remote `v2`, push with `git push v2 v2:main`)
+    -> https://pabloforconi.github.io/eterspire-v2/ (texts from `_material/Propuesta_final_Eterspire_x_Press_Over_contenido_web.docx`)
 - To test that build locally from Git Bash, prefix `MSYS_NO_PATHCONV=1`, or Git Bash rewrites `/eterspire` into a Windows path.
 - Git push uses SSH with the repo-local `core.sshCommand` (key `~/.ssh/DesktopPablo`).
