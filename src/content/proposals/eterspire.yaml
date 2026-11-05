@@ -84,29 +84,25 @@ sections:
       - [Banner en pressover.news, Durante todo el período contratado]
     notes: Las publicaciones editoriales estarán sujetas a la disponibilidad de información y al criterio periodístico de Press Over.
 
-  - type: text
+  - type: cards
     eyebrow: Press Over Club
     nav: Press Over Club
     id: press-over-club
     title: Una comunidad alrededor de Eterspire
-    body: |
-      Queremos que la colaboración no se limite a mostrar el juego: también buscamos generar motivos para que nuestra comunidad se acerque a Eterspire y participe de su universo.
+    intro: |
+      Como parte de la colaboración, proponemos incorporar a Eterspire dentro de Press Over Club, nuestro espacio de beneficios y ventajas para los miembros de nuestra comunidad.
 
-      A través de Press Over Club, proponemos desarrollar beneficios y acciones especiales para nuestros suscriptores, coordinados con el equipo de Stonehollow Workshop.
-
-  - type: cards
-    sub: true
-    title: Beneficios para los miembros de Press Over Club
+      La iniciativa busca generar un vínculo directo entre los suscriptores de Press Over y el universo de Eterspire, ofreciendo incentivos para descubrir el juego, participar de sus actividades y sumarse a su comunidad.
     columns: 4
     items:
-      - title: Códigos exclusivos
-        body: Códigos promocionales para que los miembros de Press Over Club puedan acceder a beneficios dentro de Eterspire.
-      - title: Recompensas dentro del juego
-        body: Objetos, ventajas u otras recompensas especiales, de acuerdo con las posibilidades que ofrezca el juego.
-      - title: Sorteos para la comunidad
-        body: Sorteos de códigos o recompensas de Eterspire a través de los canales de Press Over.
+      - title: Códigos promocionales
+        body: Disponibilidad de códigos exclusivos para los miembros de Press Over Club.
+      - title: Beneficios dentro del juego
+        body: Recompensas, objetos u otras ventajas especiales para quienes formen parte de nuestra comunidad.
+      - title: Sorteos especiales
+        body: Posibilidad de organizar sorteos de códigos o recompensas de Eterspire a través de nuestros canales.
       - title: Acciones especiales
-        body: Dinámicas puntuales para incentivar la participación, dar a conocer el juego y conectar ambas comunidades.
+        body: Dinámicas puntuales para promover la participación de la comunidad y generar nuevas oportunidades de difusión.
     notes: La disponibilidad, las características y las condiciones de estos beneficios se definirán junto al equipo de Eterspire.
 
   - type: text
