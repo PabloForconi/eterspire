@@ -5,8 +5,7 @@ project: Eterspire
 title: Eterspire × Press Over — Propuesta comercial
 date: 2026-11-05
 meta:
-  - { label: País, value: Argentina }
-  - { label: Período, value: 2026/2027 }
+  - { label: Período de colaboración, value: Diciembre 2026 – Diciembre 2027 }
 # Logo and key art from https://eterspire.com
 clientLogo: ../../assets/proposals/eterspire/logo.png
 clientUrl: https://eterspire.com/
@@ -14,14 +13,15 @@ clientUrl: https://eterspire.com/
 hero:
   eyebrow: Propuesta comercial
   headline: Eterspire × Press Over
-  subhead: Comunicación, comunidad y desarrollo independiente
+  subhead: Comunicación, posicionamiento y patrocinio de IDA 2027
   image: ../../assets/proposals/eterspire/key-art-tavern.webp
+  layout: ficha
 
 sections:
   - type: text
-    eyebrow: Eterspire × Press Over
-    nav: La alianza
-    title: Una alianza para conectar con la comunidad gamer de Latinoamérica e impulsar el desarrollo independiente.
+    eyebrow: La alianza
+    nav: Alianza
+    title: Una alianza para conectar con la comunidad gamer e impulsar el desarrollo independiente.
     body: |
       Eterspire es un proyecto que representa el potencial de los videojuegos independientes argentinos. A través de una propuesta propia dentro del género MMORPG, ha conseguido desarrollar una comunidad internacional y construir una identidad dentro de un mercado altamente competitivo.
 
@@ -171,7 +171,7 @@ sections:
 
   - type: text
     eyebrow: Propuesta económica
-    nav: Propuesta económica
+    nav: Inversión
     id: propuesta-economica
     title: Una alianza con beneficios por contratación conjunta.
     body: |
@@ -249,9 +249,9 @@ sections:
     notes: Press Over coordinará con el equipo de Eterspire el calendario de publicaciones, las acciones de comunicación y los detalles de participación en IDA 2027.
 
   - type: contact
-    eyebrow: Cierre
-    nav: Cierre
-    title: Cierre
+    eyebrow: Conclusión
+    nav: Conclusión
+    title: Nuestra visión
     body: |
       Desde Press Over creemos que Eterspire tiene una historia y un proyecto que vale la pena seguir impulsando dentro de la comunidad gamer latinoamericana y del ecosistema de desarrollo independiente.
 
@@ -259,4 +259,5 @@ sections:
 
       Esperamos poder acompañar el crecimiento del proyecto y contar con Eterspire como parte de Press Over y de Indie Dev Argentina 2027.
     contacts:
-      - { name: Press Over, role: "Argentina · www.pressover.news", email: ventas.pressover@gmail.com }
+      - { name: Pablo Forconi, role: Director Ejecutivo, whatsapp: "+54 9 11 2296 0576", email: ventas.pressover@gmail.com }
+      - { name: Juan Lomanto, role: Director General, whatsapp: "+54 9 11 6869 5860", email: info@pressovernews.com }

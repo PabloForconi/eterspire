@@ -1,71 +1,15 @@
 ---
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { Image } from 'astro:assets';
-import pressOverLogo from '../assets/brand/pressover-logo-white.png';
-import Proposal from '../layouts/Proposal.astro';
-import Cover from '../components/Cover.astro';
-import Nav from '../components/Nav.astro';
-import Section from '../components/Section.astro';
-import Text from '../components/sections/Text.astro';
-import Cards from '../components/sections/Cards.astro';
-import Stats from '../components/sections/Stats.astro';
-import Timeline from '../components/sections/Timeline.astro';
-import Table from '../components/sections/Table.astro';
-import Pricing from '../components/sections/Pricing.astro';
-import Cases from '../components/sections/Cases.astro';
-import Team from '../components/sections/Team.astro';
-import Contact from '../components/sections/Contact.astro';
-import { slugify } from '../lib/md';
-import { useT } from '../lib/i18n';
+import ProposalPage from '../components/ProposalPage.astro';
 
 export async function getStaticPaths() {
   const proposals = await getCollection('proposals', (p) => !p.data.draft);
+  // A single proposal is served at the site root (index.astro), so it gets no /<slug>/ copy.
+  if (proposals.length < 2) return [];
   return proposals.map((p) => ({ params: { slug: p.id }, props: { proposal: p } }));
 }
 
 const { proposal } = Astro.props as { proposal: CollectionEntry<'proposals'> };
-const d = proposal.data;
-const t = useT(d.lang);
-
-/** Section `type` → component. Add a block type here and in src/content.config.ts. */
-const blocks = { text: Text, cards: Cards, stats: Stats, timeline: Timeline, table: Table, pricing: Pricing, cases: Cases, team: Team, contact: Contact };
-
-// Sub-sections continue the section before them, so they take its tone unless they set their own.
-let parentTone: 'light' | 'dark' = 'light';
-const sections = d.sections.map((s, i) => {
-  if (!s.sub) parentTone = s.tone ?? 'light';
-  return { ...s, id: s.id ?? (slugify(s.nav ?? s.title) || `section-${i + 1}`), tone: s.tone ?? parentTone };
-});
-const links = sections.filter((s) => !s.hideInNav && !s.sub).map((s) => ({ id: s.id, label: s.nav ?? s.title }));
 ---
 
-<Proposal lang={d.lang} title={d.title} description={t('by')} accent={d.theme.accent}>
-  <div id="top">
-    <Cover lang={d.lang} client={d.client} date={d.date} validUntil={d.validUntil} meta={d.meta} clientLogo={d.clientLogo} clientUrl={d.clientUrl} hero={d.hero} />
-  </div>
-  <Nav lang={d.lang} project={d.project} links={links} />
-  <main class="panel">
-    {
-      sections.map((s) => {
-        const Block = blocks[s.type];
-        return (
-          <Section id={s.id} eyebrow={s.eyebrow} title={s.title} intro={s.intro} sub={s.sub} tone={s.tone} logo={s.logo}>
-            <Block {...s} lang={d.lang} />
-          </Section>
-        );
-      })
-    }
-  </main>
-  <footer class="footer tone-dark">
-    <div class="wrap">
-      <Image src={pressOverLogo} alt="Press Over" height={48} class="footer-logo" />
-      <span>{d.title}</span>
-    </div>
-  </footer>
-</Proposal>
-
-<style>
-  .footer { padding: 40px 0 56px; font: 600 13px/1.4 var(--font-display); color: var(--muted); }
-  .footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
-  .footer-logo { height: 22px; width: auto; }
-</style>
+<ProposalPage proposal={proposal} />

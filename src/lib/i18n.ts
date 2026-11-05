@@ -2,8 +2,8 @@ export type Lang = 'en' | 'es';
 
 const strings = {
   en: {
-    preparedFor: 'Prepared for',
-    date: 'Date',
+    presentedTo: 'Presented to',
+    date: 'Date submitted',
     validUntil: 'Valid until',
     recommended: 'Recommended',
     print: 'Save as PDF',
@@ -11,8 +11,8 @@ const strings = {
     by: 'A proposal by Press Over',
   },
   es: {
-    preparedFor: 'Preparado para',
-    date: 'Fecha',
+    presentedTo: 'Presentada a',
+    date: 'Fecha de presentación',
     validUntil: 'Válida hasta',
     recommended: 'Recomendado',
     print: 'Guardar como PDF',

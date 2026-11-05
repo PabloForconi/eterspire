@@ -1,0 +1,81 @@
+---
+import { md } from '../lib/md';
+import { formatDate, useT, type Lang } from '../lib/i18n';
+
+/** Title block: tag, headline, subhead and the cover meta (prepared for, date...). */
+interface Props {
+  lang: Lang;
+  client: string;
+  /** Shown as "Presented to" only when set (the client usually already appears in the headline). */
+  presentedTo?: string;
+  date: Date;
+  validUntil?: Date;
+  meta: { label: string; value: string }[];
+  hero: { eyebrow?: string; headline: string; subhead?: string };
+  /** Render as a dark card (a "ficha") on the frame, outside the white panel. */
+  card?: boolean;
+}
+
+const { lang, client, presentedTo, date, validUntil, meta, hero, card = false } = Astro.props;
+const t = useT(lang);
+---
+
+<div class:list={['intro', { 'is-card': card, 'tone-dark': card }]}>
+  <div class="box"><div class="wrap">
+    <div class="heading">
+      {hero.eyebrow && <div class="eyebrow"><span class="tag">{hero.eyebrow}</span></div>}
+      <h1>{hero.headline}</h1>
+      {hero.subhead && <div class="subhead" set:html={md(hero.subhead)} />}
+    </div>
+    <dl class="meta">
+      {presentedTo && <div><dt>{t('presentedTo')}</dt><dd>{presentedTo}</dd></div>}
+      <div><dt>{t('date')}</dt><dd>{formatDate(date, lang)}</dd></div>
+      {validUntil && <div><dt>{t('validUntil')}</dt><dd>{formatDate(validUntil, lang)}</dd></div>}
+      {meta.map((m) => <div><dt>{m.label}</dt><dd>{m.value}</dd></div>)}
+    </dl>
+  </div></div>
+</div>
+
+<style>
+  .intro { padding: clamp(48px, 7vw, 88px) 0; color: var(--body); }
+  h1 { font-size: clamp(32px, 5vw, 60px); font-weight: 900; letter-spacing: -0.035em; line-height: 1.05; }
+  .subhead { margin-top: 22px; font-size: clamp(19px, 2.2vw, 24px); color: var(--body); max-width: 640px; }
+  .meta {
+    display: flex; flex-wrap: wrap; gap: 16px 48px; margin: clamp(36px, 5vw, 56px) 0 0;
+    border-top: 1px solid var(--line); padding-top: 24px;
+  }
+  dt {
+    font: 700 11px/1 var(--font-display); letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  dd { margin: 0; font-weight: 600; color: var(--text); }
+
+  /*
+   * Card ("ficha"): a sober document header. Same width as the white panel (.panel) so the content lines up
+   * with the sections below; title on the left, the data as a small table on the right.
+   */
+  .is-card { padding: 0; background: transparent; }
+  .is-card .box {
+    max-width: 1240px;
+    margin: 0 auto;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding-block: clamp(28px, 4vw, 44px);
+  }
+  .is-card .wrap { display: grid; gap: 28px; align-items: center; }
+  .is-card .eyebrow { margin-bottom: 14px; }
+  .is-card h1 { font-size: clamp(28px, 3.4vw, 42px); font-weight: 800; letter-spacing: -0.025em; }
+  .is-card .subhead { margin-top: 10px; font-size: clamp(16px, 1.4vw, 17px); color: var(--muted); }
+  .is-card .meta { display: block; margin: 0; padding: 0; border: 0; }
+  .is-card .meta div { padding: 11px 0; border-bottom: 1px solid var(--line); }
+  .is-card .meta div:first-child { border-top: 1px solid var(--line); }
+  .is-card dt { margin-bottom: 6px; }
+  .is-card dd { font-size: 15px; }
+  @media (min-width: 900px) {
+    .is-card .wrap { grid-template-columns: 1fr minmax(300px, 380px); gap: 56px; }
+  }
+  @media print {
+    .is-card .box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>

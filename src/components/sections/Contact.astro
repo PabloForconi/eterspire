@@ -1,32 +1,59 @@
 ---
 import { md } from '../../lib/md';
 
-interface Person { name: string; role?: string; email: string }
+interface Person { name: string; role?: string; email?: string; whatsapp?: string; url?: string }
 const { body, contacts } = Astro.props as { body?: string; contacts: Person[] };
+
+const waLink = (phone: string) => `https://wa.me/${phone.replace(/\D/g, '')}`;
+const host = (url: string) => new URL(url).host.replace(/^www\./, '');
 ---
 
 {body && <div class="prose lead" set:html={md(body)} />}
 {
   contacts.length > 0 && (
-    <div class="contacts">
+    <div class={`grid cols-${Math.min(Math.max(contacts.length, 2), 3)} contacts`}>
       {contacts.map((c) => (
-        <a class="card contact" href={`mailto:${c.email}`}>
-          <strong>{c.name}</strong>
-          {c.role && <span class="muted">{c.role}</span>}
-          <span class="email">{c.email}</span>
-        </a>
+        <div class="card contact">
+          <strong class="name">{c.name}</strong>
+          {c.role && <span class="role">{c.role}</span>}
+          <ul class="channels">
+            {c.whatsapp && (
+              <li>
+                <span class="label">WhatsApp</span>
+                <a href={waLink(c.whatsapp)} target="_blank" rel="noopener">{c.whatsapp}</a>
+              </li>
+            )}
+            {c.email && (
+              <li>
+                <span class="label">Email</span>
+                <a href={`mailto:${c.email}`}>{c.email}</a>
+              </li>
+            )}
+            {c.url && (
+              <li>
+                <span class="label">Web</span>
+                <a href={c.url} target="_blank" rel="noopener">{host(c.url)}</a>
+              </li>
+            )}
+          </ul>
+        </div>
       ))}
     </div>
   )
 }
 
 <style>
-  .lead { font-size: 19px; margin-bottom: 32px; }
-  .contacts { display: flex; flex-wrap: wrap; gap: 16px; }
-  .contact {
-    display: flex; flex-direction: column; gap: 4px; min-width: min(260px, 100%);
-    text-decoration: none; color: var(--text); transition: border-color 0.15s;
+  .lead { font-size: 17px; margin-bottom: 28px; }
+  /* Two people read better as a pair than stretched over the full width. */
+  .contacts.cols-2 { max-width: 820px; }
+  .contact { display: flex; flex-direction: column; }
+  .name { font: 800 17px/1.2 var(--font-display); color: var(--text); letter-spacing: -0.01em; }
+  .role { color: var(--muted); font-size: 15px; margin-top: 4px; }
+  .channels { list-style: none; margin: 18px 0 0; padding: 14px 0 0; border-top: 1px solid var(--line); display: grid; gap: 10px; }
+  .channels li { display: flex; flex-direction: column; gap: 2px; }
+  .label {
+    font: 700 11px/1 var(--font-display); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
   }
-  .contact:hover { box-shadow: 0 0 0 2px var(--accent) inset; }
-  .email { color: var(--accent-text); margin-top: 8px; font-weight: 500; }
+  .channels a { color: var(--accent-text); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+  .channels a:hover { text-decoration: underline; }
 </style>

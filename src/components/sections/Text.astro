@@ -11,13 +11,13 @@ const { body, image, callout } = Astro.props;
 </div>
 
 <style>
-  .text { font-size: 19px; }
+  .text { font-size: 17px; }
   .media { border-radius: var(--radius); }
   .callout {
     max-width: 860px; padding: 32px 36px; border-radius: var(--radius);
     background: var(--accent-strong); color: #fff; --text: #fff;
   }
-  .callout :global(strong) { font-family: var(--font-display); font-weight: 800; font-size: 21px; line-height: 1.35; letter-spacing: -0.01em; }
+  .callout :global(strong) { font-family: var(--font-display); font-weight: 800; font-size: 18px; line-height: 1.4; letter-spacing: -0.01em; }
   @media (min-width: 900px) {
     .with-image { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
   }

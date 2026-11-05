@@ -7,29 +7,37 @@ Talk to the user in Spanish.
 
 ## Commands
 Node is installed at `C:\Program Files\nodejs` (add it to PATH in new shells).
-- `npm run dev`: dev server on http://localhost:4322 (or the `astro-dev` entry in `.claude/launch.json`)
+- `npm run dev`: dev server on http://localhost:4322 (or the `astro-dev` entry in `.claude/launch.json`).
+  The dev server sometimes keeps serving stale component styles after edits; restart it if a change does not show.
 - `npm run build`: builds to `dist/` and validates every proposal against the schema
 
 ## Adding or editing a proposal
-1. Copy `src/content/proposals/_template.yaml` to `src/content/proposals/<slug>.yaml`. The slug is the URL (`/<slug>/`).
+1. Copy `src/content/proposals/_template.yaml` to `src/content/proposals/<slug>.yaml`. With a single proposal it is
+   served at the site root; with several, each one is at `/<slug>/` and the root lists them.
    Files starting with `_` are not built; `draft: true` keeps a proposal out of the build.
 2. `lang` (`en` | `es`) sets the UI labels; write the content in that language.
 3. Sections render in file order. Block types: `text`, `cards`, `stats`, `timeline`, `table`, `pricing`, `cases`,
    `team`, `contact`. `sub: true` makes a block continue the previous section (no divider, smaller heading, no menu entry).
    `tone: dark` turns a section into a dark band (sub-sections inherit it); `logo` shows an image above the title.
-4. Images go in `src/assets/proposals/<slug>/`, referenced relative to the YAML file.
-5. Run `npm run build`. A schema error names the file and field.
+4. `hero.layout` picks the cover: `ficha` (used for Eterspire: banner with the client logo, dark title card resting
+   on it), `cabezal` (same, card below the banner) or `clasica` (Press Over logo and title inside a full-screen cover).
+5. Images go in `src/assets/proposals/<slug>/`, referenced relative to the YAML file.
+6. Run `npm run build`. A schema error names the file and field.
 
 Rules:
 - Copy the client-approved text as written (the source document lives in `_material/`, git-ignored). Don't
   rewrite, add claims, or mark a "recommended" package unless the source says so.
 - Quote one-line YAML strings that contain `: `, or use a `|` block.
-- With one proposal, `/` redirects to it; with several, `/` lists them. Every page is `noindex`.
+- Every page is `noindex`, but the page and this repo are **public**: anyone with the link can read the proposal,
+  and anyone can read the source. Never put anything here that the client page should not show.
 
 ## Structure
 - `src/content.config.ts`: proposal schema (all block types and their fields)
-- `src/pages/[slug].astro`: proposal page; maps each block `type` to its component (add new types here and in the schema)
-- `src/components/`: `Cover`, `Nav` (sticky menu + "Save as PDF"), `Section` wrapper, `sections/*` blocks
+- `src/pages/index.astro` / `src/pages/[slug].astro`: routes (see step 1 above)
+- `src/components/ProposalPage.astro`: the whole proposal page; maps each block `type` to its component (add new
+  types here and in the schema)
+- `src/components/`: `Cover` (banner + layouts), `Intro` (title card), `Nav` (Press Over logo + PDF row, then the
+  fixed row of section links), `Section` wrapper, `sections/*` blocks
 - `src/lib/md.ts`: the light Markdown used in text fields; `src/lib/i18n.ts`: UI labels in en/es
 - `src/styles/global.css`: color tokens, light/dark tones (`.tone-dark`), shared bits (`.panel`, `.tag`, `.card`, `.list`) and print styles
 - `src/assets/brand/`: Press Over and IDA logos (white versions, for dark backgrounds), downloaded from pressover.news
@@ -47,4 +55,9 @@ Steam https://store.steampowered.com/app/2144600/Eterspire/, App Store https://a
 Google Play https://play.google.com/store/apps/details?id=com.StonehollowWorkshop.Eterspire,
 Discord https://discord.com/servers/eterspire-814967791840264232, Reddit https://reddit.com/r/eterspire,
 X https://x.com/eterspire, Instagram https://www.instagram.com/eterspiremmo/.
-- No deploy target or Git remote yet. Git push uses SSH with the repo-local `core.sshCommand` (key `~/.ssh/DesktopPablo`).
+
+## Deploy
+- Public repo https://github.com/PabloForconi/eterspire. Every push to `main` builds and publishes to GitHub Pages at
+  https://pabloforconi.github.io/eterspire/ (`.github/workflows/deploy-pages.yml` sets `SITE_URL` and `BASE_PATH=/eterspire`).
+- To test that build locally from Git Bash, prefix `MSYS_NO_PATHCONV=1`, or Git Bash rewrites `/eterspire` into a Windows path.
+- Git push uses SSH with the repo-local `core.sshCommand` (key `~/.ssh/DesktopPablo`).

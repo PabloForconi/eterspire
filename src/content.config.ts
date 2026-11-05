@@ -124,7 +124,20 @@ const sections = (image: SchemaContext['image']) =>
       ...base(image),
       type: z.literal('contact'),
       body: z.string().optional(),
-      contacts: z.array(z.object({ name: z.string(), role: z.string().optional(), email: z.email() })).default([]),
+      contacts: z
+        .array(
+          z
+            .object({
+              name: z.string(),
+              role: z.string().optional(),
+              email: z.email().optional(),
+              /** Phone as written, e.g. "+54 9 11 2296 0576"; it links to WhatsApp (wa.me). */
+              whatsapp: z.string().regex(/^\+?[\d\s()-]{8,}$/, 'Use a phone number like +54 9 11 2296 0576').optional(),
+              url: z.url().optional(),
+            })
+            .refine((c) => c.email || c.whatsapp || c.url, 'Each contact needs at least an email, whatsapp or url'),
+        )
+        .default([]),
     }),
   ]);
 
@@ -150,11 +163,15 @@ const proposals = defineCollection({
       clientLogo: image().optional(),
       /** The client's website; the cover logo links to it. */
       clientUrl: z.url().optional(),
+      /** Optional "Presented to" line in the title card, e.g. "Client / Studio". Hidden when empty. */
+      presentedTo: z.string().optional(),
       hero: z.object({
         eyebrow: z.string().optional(),
         headline: z.string(),
         subhead: z.string().optional(),
         image: image().optional(),
+        /** Cover layout, see src/components/Cover.astro. */
+        layout: z.enum(['cabezal', 'ficha', 'clasica']).default('cabezal'),
       }),
       sections: z.array(sections(image)).min(1),
     }),

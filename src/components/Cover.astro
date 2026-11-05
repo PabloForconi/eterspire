@@ -1,13 +1,25 @@
 ---
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-import { md } from '../lib/md';
-import { formatDate, useT, type Lang } from '../lib/i18n';
+import ClientLogo from './ClientLogo.astro';
+import Intro from './Intro.astro';
+import type { Lang } from '../lib/i18n';
 import pressOverLogo from '../assets/brand/pressover-logo-white.png';
+
+/**
+ * Cover layouts. In all of them the client logo sits centered over the key art; they differ in where the
+ * Press Over logo and the title block (Intro) go:
+ * - cabezal: Press Over logo in the sticky menu from the start; the title opens the white panel.
+ * - ficha:   like cabezal, but the white panel rises over the bottom of the art, as a card.
+ * - clasica: Press Over logo centered at the top of the cover; the title sits in the dark under the logo.
+ */
+export type CoverLayout = 'cabezal' | 'ficha' | 'clasica';
 
 interface Props {
   lang: Lang;
+  layout: CoverLayout;
   client: string;
+  presentedTo?: string;
   date: Date;
   validUntil?: Date;
   meta: { label: string; value: string }[];
@@ -16,99 +28,74 @@ interface Props {
   hero: { eyebrow?: string; headline: string; subhead?: string; image?: ImageMetadata };
 }
 
-const { lang, client, date, validUntil, meta, clientLogo, clientUrl, hero } = Astro.props;
-const t = useT(lang);
+const { layout, clientLogo, clientUrl, client, hero } = Astro.props;
 ---
 
-<header class="cover tone-dark">
+<header class:list={['cover', 'tone-dark', `layout-${layout}`]}>
   {
     hero.image && (
       <Image src={hero.image} alt="" widths={[960, 1600, 2400]} sizes="100vw" class="bg" loading="eager" fetchpriority="high" />
     )
   }
-  <div class="wrap inner">
-    <div class="brands">
-      <Image src={pressOverLogo} alt="Press Over" height={72} class="po-logo" loading="eager" />
-      <span class="x" aria-hidden="true">×</span>
-      {clientUrl ? <a class="client-name" href={clientUrl} target="_blank" rel="noopener">{client}</a> : <span class="client-name">{client}</span>}
-    </div>
-
-    <div class:list={['main', { 'has-logo': clientLogo }]}>
-      <div class="copy">
-        {hero.eyebrow && <div class="eyebrow"><span class="tag">{hero.eyebrow}</span></div>}
-        <h1>{hero.headline}</h1>
-        {hero.subhead && <div class="subhead" set:html={md(hero.subhead)} />}
+  {
+    layout === 'clasica' && (
+      <div class="top">
+        <Image src={pressOverLogo} alt="Press Over" height={72} class="po-logo" loading="eager" />
       </div>
-      {
-        clientLogo &&
-          (clientUrl ? (
-            <a href={clientUrl} target="_blank" rel="noopener" class="client-logo-link">
-              <Image src={clientLogo} alt={client} width={420} class="client-logo" loading="eager" />
-            </a>
-          ) : (
-            <Image src={clientLogo} alt={client} width={420} class="client-logo" loading="eager" />
-          ))
-      }
+    )
+  }
+  <div class="emblem">
+    <div class="logo">
+      {clientLogo ? <ClientLogo src={clientLogo} alt={client} url={clientUrl} /> : <span class="client-name">{client}</span>}
     </div>
-
-    <dl class="meta">
-      <div><dt>{t('preparedFor')}</dt><dd>{client}</dd></div>
-      <div><dt>{t('date')}</dt><dd>{formatDate(date, lang)}</dd></div>
-      {validUntil && <div><dt>{t('validUntil')}</dt><dd>{formatDate(validUntil, lang)}</dd></div>}
-      {meta.map((m) => <div><dt>{m.label}</dt><dd>{m.value}</dd></div>)}
-    </dl>
   </div>
+  {layout === 'clasica' && <div class="title"><Intro {...Astro.props} /></div>}
 </header>
 
 <style>
-  .cover { position: relative; min-height: 92svh; display: flex; overflow: hidden; background: var(--frame); }
-  .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.5; }
-  /* Darken the art behind the text (left and bottom) so the copy stays readable. */
+  .cover { position: relative; display: flex; flex-direction: column; overflow: hidden; background: var(--frame); }
+  .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
+  /* Vignette: keeps the art visible around a centered logo. */
   .cover::after {
     content: ''; position: absolute; inset: 0;
-    background:
-      linear-gradient(90deg, var(--frame) 0%, color-mix(in srgb, var(--frame) 75%, transparent) 45%, color-mix(in srgb, var(--frame) 20%, transparent) 100%),
-      linear-gradient(180deg, color-mix(in srgb, var(--frame) 40%, transparent) 0%, transparent 30%, var(--frame) 100%);
+    background: radial-gradient(ellipse 60% 55% at 50% 50%, color-mix(in srgb, var(--frame) 35%, transparent), color-mix(in srgb, var(--frame) 80%, transparent) 100%);
   }
-  /* Thin magenta line at the very top, a nod to the site's accent bars. */
-  .cover::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--accent); z-index: 2;
-  }
-  .inner {
-    position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: space-between;
-    gap: 56px; padding-top: 40px; padding-bottom: 56px;
-  }
-  .brands { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
-  .po-logo { height: clamp(26px, 3.4vw, 36px); width: auto; }
-  .x { color: var(--muted); font: 500 22px/1 var(--font-display); }
+  .top, .emblem, .title { position: relative; z-index: 1; }
+  .emblem { flex: 1; display: grid; place-items: center; padding: 48px var(--gutter); }
+  .logo { width: clamp(260px, 34vw, 480px); }
   .client-name {
-    font: 800 clamp(20px, 2.6vw, 28px)/1 var(--font-display); color: var(--text);
-    letter-spacing: 0.02em; text-transform: uppercase; text-decoration: none;
+    font: 900 clamp(48px, 9vw, 120px)/1 var(--font-display); color: var(--text); letter-spacing: -0.03em; text-transform: uppercase;
   }
-  .main { display: grid; gap: 32px; align-items: center; }
-  .client-logo { width: clamp(200px, 26vw, 380px); height: auto; filter: drop-shadow(0 12px 32px rgb(0 0 0 / 0.55)); }
-  .client-logo-link { justify-self: start; }
-  @media (min-width: 900px) {
-    .main.has-logo { grid-template-columns: 1fr auto; gap: 48px; }
-    .client-logo-link, .main > .client-logo { justify-self: end; }
-  }
-  @media (max-width: 899px) {
-    /* On phones the logo leads, above the headline. */
-    .main.has-logo > :last-child { order: -1; }
-    .client-logo { width: min(240px, 60vw); }
-  }
-  .copy { max-width: 960px; }
-  h1 { font-size: clamp(44px, 8.4vw, 104px); font-weight: 900; letter-spacing: -0.04em; line-height: 1; }
-  .subhead { margin-top: 24px; font-size: clamp(19px, 2.2vw, 24px); color: var(--body); max-width: 640px; }
-  .meta { display: flex; flex-wrap: wrap; gap: 16px 48px; margin: 0; border-top: 1px solid var(--line); padding-top: 24px; }
-  dt {
-    font: 700 11px/1 var(--font-display); letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--muted); margin-bottom: 8px;
-  }
-  dd { margin: 0; font-weight: 600; color: var(--text); }
+  .po-logo { height: clamp(24px, 2.6vw, 32px); width: auto; }
 
+  /* cabezal / ficha: a contained banner (not a full screen), with a moderate logo. */
+  .layout-cabezal, .layout-ficha { height: clamp(240px, 30vw, 380px); }
+  .layout-cabezal .logo, .layout-ficha .logo { width: clamp(170px, 17vw, 250px); }
+  .layout-cabezal .emblem, .layout-ficha .emblem { padding-block: 28px; }
+  .layout-cabezal::after, .layout-ficha::after {
+    background: color-mix(in srgb, var(--frame) 45%, transparent);
+  }
+  .layout-cabezal::before, .layout-clasica::before {
+    content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 30%; z-index: 1;
+    background: linear-gradient(180deg, transparent, var(--frame));
+  }
+  /* Leave room at the bottom for the card that overlaps the art. */
+  .layout-ficha .emblem { padding-bottom: calc(28px + var(--overlap)); }
+
+  .layout-clasica { min-height: 100svh; }
+  .layout-clasica::before { height: 60%; background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--frame) 85%, transparent) 40%, var(--frame)); }
+  .layout-clasica .top {
+    display: flex; justify-content: center; padding: 40px var(--gutter) 0;
+  }
+  .layout-clasica .emblem { min-height: 56svh; }
+  .layout-clasica .title { z-index: 2; }
+  .layout-clasica .title :global(.intro) { padding-top: 0; }
+
+  @media (max-width: 720px) {
+    .layout-clasica .logo { width: min(280px, 72vw); }
+  }
   @media print {
-    .cover { min-height: auto; break-after: page; }
-    .inner { min-height: 92vh; padding-bottom: 32px; }
+    .cover { min-height: 0; }
+    .emblem { min-height: 60vh; }
   }
 </style>

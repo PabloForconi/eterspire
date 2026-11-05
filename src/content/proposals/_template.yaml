@@ -25,6 +25,7 @@ hero:
   headline: One line that sums up the offer
   subhead: Two lines of context about what we propose and why.
   # image: ../../assets/proposals/<slug>/key-art.jpg
+  layout: ficha               # ficha | cabezal | clasica (see CLAUDE.md)
 
 # Sections render in this order. Every section takes:
 #   type (required), title (required), eyebrow, intro, id (anchor), nav (short menu label), hideInNav,
@@ -114,4 +115,6 @@ sections:
     title: Next steps
     body: What we need from the client to start.
     contacts:
-      - { name: Full Name, role: Role, email: name@example.com }
+      # Each contact needs at least one of email, whatsapp (links to wa.me) or url.
+      - { name: Full Name, role: Role, whatsapp: "+54 9 11 0000 0000", email: name@example.com }
+      - { name: Company, url: "https://example.com" }
