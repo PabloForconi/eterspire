@@ -56,21 +56,31 @@ sections:
     id: comunicacion
     title: Eterspire en Press Over
     intro: Durante el período de colaboración, Eterspire tendrá presencia en distintos espacios de Press Over. La propuesta combina contenidos audiovisuales, cobertura de novedades, difusión a través de nuestra newsletter y presencia publicitaria en la web, con el objetivo de mantener el juego dentro de la conversación de nuestra comunidad.
-    columns: 3
+    columns: 2
     items:
-      - title: Eterspire en vivo
-        body: El tráiler oficial de Eterspire se incorporará a las transmisiones de Press Over en YouTube para presentar el juego a nuestra audiencia y generar nuevas oportunidades de descubrimiento.
+      - tag: 01 · YouTube
+        title: Presencia en nuestros programas
+        body: "Integraremos el tráiler oficial de Eterspire en nuestros dos espacios audiovisuales de YouTube: Press Over Podcast y Streams Over, acercando el juego a nuestra audiencia a través de contenidos y transmisiones."
         items:
-          - Entre 3 y 4 reproducciones mensuales del tráiler en los streams de Press Over.
+          - Entre 3 y 4 reproducciones mensuales del tráiler en nuestros programas.
           - Posibilidad de acompañar las reproducciones con menciones de los conductores y comentarios sobre las características del juego.
-      - title: Las novedades de Eterspire en Press Over
-        body: Acompañaremos los anuncios y momentos relevantes del juego con publicaciones en pressover.news y difusión en nuestros espacios de comunicación.
+      - tag: 02 · Website
+        title: Notas y novedades
+        body: Acompañaremos los anuncios y momentos relevantes del juego con artículos y publicaciones en pressover.news, acercando sus novedades a nuestra audiencia.
         items:
-          - Publicación de novedades sobre actualizaciones, eventos y anuncios relevantes de Eterspire.
-          - Publicación de gacetillas oficiales proporcionadas por Stonehollow Workshop.
-          - Difusión de novedades seleccionadas en Press Over Podcast, de acuerdo con la temática y la agenda del programa.
-      - title: Eterspire, presente en nuestra web
-        body: Eterspire contará con un banner publicitario dentro de la sección de notas de pressover.news, manteniendo su presencia frente a los lectores que siguen las noticias, análisis y novedades de la industria de los videojuegos. El banner estará publicado durante todo el período contratado.
+          - Publicación de notas sobre actualizaciones, eventos, lanzamientos y anuncios relevantes.
+          - Contenidos vinculados con la evolución del juego y las novedades de Stonehollow Workshop.
+      - tag: 03 · Newsletter
+        title: Comunicación semanal
+        body: El juego podrá formar parte del newsletter semanal de Press Over, que reúne una selección de las noticias y novedades más importantes de la industria de los videojuegos, con enlaces para acceder a cada publicación.
+        items:
+          - Inclusión de noticias y novedades de Eterspire entre los contenidos destacados, cuando resulten relevantes para nuestra audiencia.
+          - Difusión semanal por correo electrónico a nuestra comunidad de lectores, generando una vía adicional de llegada a los contenidos publicados en pressover.news.
+      - tag: 04 · Banner
+        title: Presencia publicitaria en nuestra web
+        body: Eterspire contará con un banner publicitario dentro de la sección de notas de pressover.news, manteniendo su presencia frente a los lectores que siguen las noticias, análisis y novedades de la industria de los videojuegos.
+        items:
+          - Banner publicado durante todo el período contratado.
 
   - type: table
     sub: true
