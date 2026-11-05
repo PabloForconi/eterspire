@@ -181,30 +181,30 @@ sections:
       Se podrán emitir facturas tipo A para operaciones dentro de Argentina y tipo E para operaciones con clientes del exterior.
 
   - type: cards
-    eyebrow: Coordinación
-    nav: Coordinación
-    id: coordinacion
-    title: Coordinación de la colaboración
-    intro: Para poner en marcha las acciones, Press Over y Stonehollow Workshop coordinarán un calendario de comunicación y la entrega de materiales necesarios para cada canal.
+    eyebrow: Requisitos
+    nav: Requisitos
+    id: requisitos
+    title: Requisitos y coordinación de la colaboración
+    intro: Para implementar las acciones propuestas, necesitaremos contar con algunos materiales e información por parte de Eterspire.
     columns: 3
     items:
-      - title: Materiales para la comunicación
+      - title: Materiales de comunicación
         items:
-          - Tráiler oficial de Eterspire en alta calidad.
-          - Logos y recursos gráficos oficiales.
-          - Imágenes y capturas actualizadas del juego.
-          - Información sobre actualizaciones, eventos y anuncios.
-          - Enlaces oficiales de descarga y canales de comunidad.
-      - title: Beneficios de Press Over Club
+          - Trailer oficial del juego en alta calidad.
+          - Logos y recursos gráficos de Eterspire.
+          - Imágenes y capturas del videojuego.
+          - Información sobre actualizaciones, novedades y anuncios.
+          - Enlaces oficiales de descarga y canales de la comunidad.
+      - title: Materiales para Press Over Club
         items:
-          - Códigos promocionales o beneficios disponibles para los suscriptores.
-          - Detalle de las recompensas y condiciones de uso.
+          - Códigos promocionales o beneficios exclusivos para los suscriptores.
+          - Información sobre las recompensas disponibles y sus condiciones de uso.
       - title: Participación en IDA 2027
         items:
-          - Material audiovisual para la exhibición.
+          - Material audiovisual para la exhibición del juego.
           - Disponibilidad de integrantes de Stonehollow Workshop para la charla.
-          - Definición del premio que presentará Eterspire.
-          - Coordinación de los requerimientos técnicos y logísticos del espacio.
+          - Definición del premio que será presentado por Eterspire.
+          - Coordinación de las necesidades técnicas y logísticas del espacio de exhibición.
     notes: Press Over estará a cargo de coordinar las publicaciones y acciones incluidas en esta propuesta, así como los detalles de participación en IDA 2027. Stonehollow Workshop facilitará los materiales y la información oficial necesarios para su implementación.
 
   - type: contact
