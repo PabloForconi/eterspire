@@ -11,7 +11,7 @@ const { lang, project, links } = Astro.props;
 const t = useT(lang);
 ---
 
-<nav class="nav no-print" aria-label={t('contents')}>
+<nav class="nav tone-dark no-print" aria-label={t('contents')}>
   <div class="wrap bar">
     <a href="#top" class="project">{project}</a>
     <ul class="links">
@@ -50,34 +50,37 @@ const t = useT(lang);
 </script>
 
 <style>
-  .nav {
-    position: sticky; top: 0; z-index: 10;
-    background: color-mix(in srgb, var(--bg) 85%, transparent);
-    backdrop-filter: blur(12px); border-bottom: 1px solid var(--line);
+  .nav { position: sticky; top: 0; z-index: 10; background: var(--frame); }
+  .bar { display: flex; align-items: center; gap: 24px; height: 60px; max-width: 1240px; }
+  .project {
+    font: 800 15px/1 var(--font-display); color: var(--text); text-decoration: none; white-space: nowrap;
+    text-transform: uppercase; letter-spacing: 0.04em;
   }
-  .bar { display: flex; align-items: center; gap: 24px; height: 60px; }
-  .project { font: 700 16px/1 var(--font-display); color: var(--text); text-decoration: none; white-space: nowrap; }
   .links {
     list-style: none; margin: 0; padding: 0; display: flex; gap: 4px; flex: 1; min-width: 0;
     overflow-x: auto; scrollbar-width: none;
   }
   .links::-webkit-scrollbar { display: none; }
   .links a {
-    display: block; padding: 8px 9px; border-radius: 8px; font-size: 14px; font-weight: 500;
-    color: var(--muted); text-decoration: none; white-space: nowrap;
+    display: block; padding: 21px 9px 18px; font: 700 12px/1 var(--font-display); letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--body); text-decoration: none; white-space: nowrap;
+    border-bottom: 3px solid transparent;
   }
   .links a:hover { color: var(--text); }
-  .links a[aria-current] { color: var(--text); background: var(--surface-2); }
+  .links a[aria-current] { color: var(--text); border-bottom-color: var(--accent); }
   .print {
-    font: 600 14px/1 var(--font-body); color: var(--accent-ink); background: var(--accent);
-    border: 0; border-radius: 8px; padding: 10px 14px; cursor: pointer; white-space: nowrap;
+    font: 800 12px/1 var(--font-display); letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--accent-ink); background: var(--accent-strong);
+    border: 0; padding: 11px 20px 11px 14px; cursor: pointer; white-space: nowrap;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
   }
+  .print:hover { background: var(--accent); }
   /* The project name gives way to the section links on narrower screens. */
-  @media (max-width: 1360px) {
+  @media (max-width: 1599px) {
     .bar { gap: 16px; }
     .project { display: none; }
   }
   @media (max-width: 640px) {
-    .print { padding: 10px; font-size: 13px; }
+    .print { padding: 10px 16px 10px 10px; font-size: 11px; }
   }
 </style>

@@ -27,7 +27,9 @@ hero:
 
 # Sections render in this order. Every section takes:
 #   type (required), title (required), eyebrow, intro, id (anchor), nav (short menu label), hideInNav,
-#   sub (true = continues the previous section: no divider, smaller heading, not in the menu)
+#   sub (true = continues the previous section: no divider, smaller heading, not in the menu),
+#   tone (light | dark; sub-sections inherit it), logo (image above the title; white logos need tone: dark)
+#   Shared brand assets live in src/assets/brand/ (e.g. logo: ../../assets/brand/ida-logo-white.png)
 sections:
   - type: text
     eyebrow: Context

@@ -1,4 +1,4 @@
-import { defineCollection } from 'astro:content';
+import { defineCollection, type SchemaContext } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
@@ -11,7 +11,7 @@ import { z } from 'astro/zod';
 const hex = z.string().regex(/^#[0-9a-fA-F]{6}$/, 'Use a 6-digit hex color like #ff5a1f');
 
 /** Fields every section shares. `id` is the anchor (#id); `nav` is the short label in the menu. */
-const base = {
+const base = (image: SchemaContext['image']) => ({
   id: z.string().regex(/^[a-z0-9-]+$/).optional(),
   nav: z.string().optional(),
   /** Leave the section out of the top menu. */
@@ -21,12 +21,16 @@ const base = {
   eyebrow: z.string().optional(),
   title: z.string(),
   intro: z.string().optional(),
-};
+  /** Dark band (e.g. to show a white logo). Sub-sections inherit the tone of the section they continue. */
+  tone: z.enum(['light', 'dark']).optional(),
+  /** Logo shown above the section title (use a white logo with tone: dark). */
+  logo: image().optional(),
+});
 
-const sections = (image: () => z.ZodType) =>
+const sections = (image: SchemaContext['image']) =>
   z.discriminatedUnion('type', [
     z.object({
-      ...base,
+      ...base(image),
       type: z.literal('text'),
       body: z.string(),
       /** Renders the body as a highlighted box (e.g. a limited-time benefit). */
@@ -34,7 +38,7 @@ const sections = (image: () => z.ZodType) =>
       image: image().optional(),
     }),
     z.object({
-      ...base,
+      ...base(image),
       type: z.literal('cards'),
       columns: z.union([z.literal(2), z.literal(3), z.literal(4)]).default(3),
       items: z
@@ -54,19 +58,19 @@ const sections = (image: () => z.ZodType) =>
       notes: z.string().optional(),
     }),
     z.object({
-      ...base,
+      ...base(image),
       type: z.literal('stats'),
       items: z.array(z.object({ value: z.string(), label: z.string(), note: z.string().optional() })).min(1),
     }),
     z.object({
-      ...base,
+      ...base(image),
       type: z.literal('timeline'),
       phases: z
         .array(z.object({ name: z.string(), when: z.string().optional(), body: z.string().optional(), items: z.array(z.string()).default([]) }))
         .min(1),
     }),
     z.object({
-      ...base,
+      ...base(image),
       type: z.literal('table'),
       columns: z.array(z.string()).min(2),
       /** Per-column alignment; defaults to left. Use right for amounts. */
@@ -76,7 +80,7 @@ const sections = (image: () => z.ZodType) =>
       notes: z.string().optional(),
     }),
     z.object({
-      ...base,
+      ...base(image),
       type: z.literal('pricing'),
       packages: z
         .array(
@@ -94,7 +98,7 @@ const sections = (image: () => z.ZodType) =>
       notes: z.string().optional(),
     }),
     z.object({
-      ...base,
+      ...base(image),
       type: z.literal('cases'),
       items: z
         .array(
@@ -110,14 +114,14 @@ const sections = (image: () => z.ZodType) =>
         .min(1),
     }),
     z.object({
-      ...base,
+      ...base(image),
       type: z.literal('team'),
       members: z
         .array(z.object({ name: z.string(), role: z.string(), bio: z.string().optional(), photo: image().optional() }))
         .min(1),
     }),
     z.object({
-      ...base,
+      ...base(image),
       type: z.literal('contact'),
       body: z.string().optional(),
       contacts: z.array(z.object({ name: z.string(), role: z.string().optional(), email: z.email() })).default([]),

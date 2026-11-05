@@ -16,6 +16,7 @@ Node is installed at `C:\Program Files\nodejs` (add it to PATH in new shells).
 2. `lang` (`en` | `es`) sets the UI labels; write the content in that language.
 3. Sections render in file order. Block types: `text`, `cards`, `stats`, `timeline`, `table`, `pricing`, `cases`,
    `team`, `contact`. `sub: true` makes a block continue the previous section (no divider, smaller heading, no menu entry).
+   `tone: dark` turns a section into a dark band (sub-sections inherit it); `logo` shows an image above the title.
 4. Images go in `src/assets/proposals/<slug>/`, referenced relative to the YAML file.
 5. Run `npm run build`. A schema error names the file and field.
 
@@ -30,9 +31,15 @@ Rules:
 - `src/pages/[slug].astro`: proposal page; maps each block `type` to its component (add new types here and in the schema)
 - `src/components/`: `Cover`, `Nav` (sticky menu + "Save as PDF"), `Section` wrapper, `sections/*` blocks
 - `src/lib/md.ts`: the light Markdown used in text fields; `src/lib/i18n.ts`: UI labels in en/es
-- `src/styles/global.css`: color tokens (Press Over defaults; `theme.accent` overrides per proposal) and print styles
+- `src/styles/global.css`: color tokens, light/dark tones (`.tone-dark`), shared bits (`.panel`, `.tag`, `.card`, `.list`) and print styles
+- `src/assets/brand/`: Press Over and IDA logos (white versions, for dark backgrounds), downloaded from pressover.news
+
+## Look
+Based on https://pressover.news: dark `#151515` frame and cover, white content panel with rounded top corners,
+magenta `#ff005b` (`--accent`; `--accent-strong` is a darker mix for small text and buttons on white), Inter 800
+for headings and labels, Source Sans 3 for text, slanted magenta tags for eyebrows, short magenta rule above
+sub-section headings.
 
 ## Pending
-- Press Over branding (logo, colors, fonts) and Eterspire assets (logo, key art) haven't been received yet; the
-  cover shows "Press Over" as text and the accent is a placeholder orange.
+- Eterspire assets (logo, key art) haven't been received; the cover shows the client name as text.
 - No deploy target or Git remote yet. Git push uses SSH with the repo-local `core.sshCommand` (key `~/.ssh/DesktopPablo`).

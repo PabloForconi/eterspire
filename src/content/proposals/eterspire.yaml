@@ -115,6 +115,8 @@ sections:
     eyebrow: Indie Dev Argentina 2027 (IDA)
     nav: IDA 2027
     id: ida-2027
+    tone: dark
+    logo: ../../assets/brand/ida-logo-white.png
     title: Eterspire como Main Sponsor del encuentro.
     body: |
       Eterspire ya ha demostrado su compromiso con la industria nacional, participando como Main Sponsor de la EVA y acompañando el crecimiento y la visibilidad del desarrollo de videojuegos en Argentina.

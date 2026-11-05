@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import { md } from '../lib/md';
 import { formatDate, useT, type Lang } from '../lib/i18n';
+import pressOverLogo from '../assets/brand/pressover-logo-white.png';
 
 interface Props {
   lang: Lang;
@@ -18,7 +19,7 @@ const { lang, client, date, validUntil, meta, clientLogo, hero } = Astro.props;
 const t = useT(lang);
 ---
 
-<header class="cover">
+<header class="cover tone-dark">
   {
     hero.image && (
       <Image src={hero.image} alt="" widths={[960, 1600, 2400]} sizes="100vw" class="bg" loading="eager" fetchpriority="high" />
@@ -26,24 +27,19 @@ const t = useT(lang);
   }
   <div class="wrap inner">
     <div class="brands">
-      <span class="po">Press Over</span>
+      <Image src={pressOverLogo} alt="Press Over" height={72} class="po-logo" loading="eager" />
+      <span class="x" aria-hidden="true">×</span>
       {
         clientLogo ? (
-          <>
-            <span class="x" aria-hidden="true">×</span>
-            <Image src={clientLogo} alt={client} height={40} class="client-logo" />
-          </>
+          <Image src={clientLogo} alt={client} height={88} class="client-logo" loading="eager" />
         ) : (
-          <>
-            <span class="x" aria-hidden="true">×</span>
-            <span class="client-name">{client}</span>
-          </>
+          <span class="client-name">{client}</span>
         )
       }
     </div>
 
     <div class="copy">
-      {hero.eyebrow && <span class="eyebrow">{hero.eyebrow}</span>}
+      {hero.eyebrow && <div class="eyebrow"><span class="tag">{hero.eyebrow}</span></div>}
       <h1>{hero.headline}</h1>
       {hero.subhead && <div class="subhead" set:html={md(hero.subhead)} />}
     </div>
@@ -58,34 +54,40 @@ const t = useT(lang);
 </header>
 
 <style>
-  .cover {
-    position: relative; min-height: 100svh; display: flex; overflow: hidden;
-    background: radial-gradient(120% 80% at 85% 0%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 60%), var(--bg);
-  }
-  .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.45; }
+  .cover { position: relative; min-height: 92svh; display: flex; overflow: hidden; background: var(--frame); }
+  .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.4; }
   .cover::after {
     content: ''; position: absolute; inset: 0;
-    background: linear-gradient(180deg, transparent 30%, var(--bg) 100%);
+    background: linear-gradient(180deg, transparent 35%, var(--frame) 100%);
+  }
+  /* Thin magenta line at the very top, a nod to the site's accent bars. */
+  .cover::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--accent); z-index: 2;
   }
   .inner {
     position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: space-between;
-    gap: 48px; padding-top: 32px; padding-bottom: 48px;
+    gap: 56px; padding-top: 40px; padding-bottom: 56px;
   }
-  .brands { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-  .po { font: 700 20px/1 var(--font-display); letter-spacing: -0.01em; }
-  .x { color: var(--muted); }
-  .client-name { font: 500 18px/1 var(--font-display); color: var(--muted); }
-  .client-logo { height: 40px; width: auto; }
-  .copy { max-width: 900px; }
-  h1 { font-size: clamp(42px, 8vw, 92px); letter-spacing: -0.035em; }
-  .subhead { margin-top: 24px; font-size: clamp(18px, 2.2vw, 22px); color: var(--muted); max-width: 640px; }
+  .brands { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .po-logo { height: clamp(26px, 3.4vw, 36px); width: auto; }
+  .x { color: var(--muted); font: 500 22px/1 var(--font-display); }
+  .client-name {
+    font: 800 clamp(20px, 2.6vw, 28px)/1 var(--font-display); color: var(--text);
+    letter-spacing: 0.02em; text-transform: uppercase;
+  }
+  .client-logo { height: clamp(32px, 4vw, 44px); width: auto; }
+  .copy { max-width: 960px; }
+  h1 { font-size: clamp(44px, 8.4vw, 104px); font-weight: 900; letter-spacing: -0.04em; line-height: 1; }
+  .subhead { margin-top: 24px; font-size: clamp(19px, 2.2vw, 24px); color: var(--body); max-width: 640px; }
   .meta { display: flex; flex-wrap: wrap; gap: 16px 48px; margin: 0; border-top: 1px solid var(--line); padding-top: 24px; }
-  dt { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-  dd { margin: 0; font-weight: 500; }
+  dt {
+    font: 700 11px/1 var(--font-display); letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  dd { margin: 0; font-weight: 600; color: var(--text); }
 
   @media print {
-    .cover { min-height: auto; break-after: page; background: none; }
-    .bg, .cover::after { display: none; }
-    .inner { padding: 0 0 24px; min-height: 90vh; }
+    .cover { min-height: auto; break-after: page; }
+    .inner { min-height: 92vh; padding-bottom: 32px; }
   }
 </style>

@@ -27,6 +27,6 @@ const { body, contacts } = Astro.props as { body?: string; contacts: Person[] };
     display: flex; flex-direction: column; gap: 4px; min-width: min(260px, 100%);
     text-decoration: none; color: var(--text); transition: border-color 0.15s;
   }
-  .contact:hover { border-color: var(--accent); }
-  .email { color: var(--accent); margin-top: 8px; font-weight: 500; }
+  .contact:hover { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .email { color: var(--accent-text); margin-top: 8px; font-weight: 500; }
 </style>

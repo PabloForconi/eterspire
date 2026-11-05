@@ -21,14 +21,16 @@ const a = (i: number) => (align[i] === 'right' ? 'right' : undefined);
 {notes && <div class="notes muted" set:html={md(notes)} />}
 
 <style>
-  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
-  table { width: 100%; border-collapse: collapse; font-size: 16px; }
+  .table-wrap { overflow-x: auto; border-radius: var(--radius); background: var(--surface); }
+  table { width: 100%; border-collapse: collapse; font-size: 17px; }
   th, td { text-align: left; padding: 14px 18px; border-bottom: 1px solid var(--line); vertical-align: top; }
   th {
-    font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
-    font-weight: 600; background: var(--surface-2);
+    font: 800 12px/1.2 var(--font-display); letter-spacing: 0.08em; text-transform: uppercase;
+    color: #fff; background: var(--frame);
   }
-  td:first-child { font-weight: 500; }
+  td:first-child { font-weight: 600; color: var(--text); }
+  td.right { font: 700 16px/1.6 var(--font-display); color: var(--text); }
+  :global(.tone-dark) th { background: var(--surface-2); }
   .right { text-align: right; white-space: nowrap; }
   tbody tr:last-child td { border-bottom: 0; }
   tfoot td { font-weight: 600; border-top: 2px solid var(--line); border-bottom: 0; background: var(--surface-2); }

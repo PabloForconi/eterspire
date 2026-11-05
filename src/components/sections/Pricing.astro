@@ -18,7 +18,7 @@ const splitPrice = (price: string) => {
   {
     packages.map((p) => (
       <article class:list={['card', 'pkg', { highlight: p.highlight }]}>
-        {p.highlight && <span class="badge">{t('recommended')}</span>}
+        {p.highlight && <span class="badge tag">{t('recommended')}</span>}
         <h3>{p.name}</h3>
         <div class="price">
           <span class="amount">{splitPrice(p.price).amount}</span>
@@ -37,19 +37,16 @@ const splitPrice = (price: string) => {
 
 <style>
   .pkg { position: relative; display: flex; flex-direction: column; gap: 14px; padding: 30px; }
-  .highlight { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
-  .badge {
-    position: absolute; top: -12px; left: 28px; background: var(--accent); color: var(--accent-ink);
-    font: 700 12px/1 var(--font-body); letter-spacing: 0.08em; text-transform: uppercase; padding: 7px 10px; border-radius: 6px;
-  }
-  h3 { font-size: 22px; }
+  .highlight { box-shadow: 0 0 0 2px var(--accent) inset; }
+  .badge { position: absolute; top: -12px; left: 28px; }
+  h3 { font: 800 13px/1 var(--font-display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-text); }
   .price { display: flex; flex-direction: column; gap: 8px; }
   .sub { display: flex; align-items: baseline; gap: 10px; }
   .sub:empty { display: none; }
-  .amount { font: 700 clamp(32px, 3.4vw, 42px)/1 var(--font-display); letter-spacing: -0.03em; white-space: nowrap; }
-  .code { font: 600 16px/1 var(--font-display); color: var(--accent); }
-  .period { color: var(--muted); font-size: 15px; }
+  .amount { font: 900 clamp(32px, 3.4vw, 42px)/1 var(--font-display); color: var(--text); letter-spacing: -0.03em; white-space: nowrap; }
+  .code { font: 800 14px/1 var(--font-display); color: var(--accent-text); letter-spacing: 0.04em; }
+  .period { color: var(--muted); font-size: 16px; }
   .desc { font-size: 16px; }
-  .list { border-top: 1px solid var(--line); padding-top: 14px; font-size: 16px; }
+  .list { border-top: 1px solid var(--line); padding-top: 14px; font-size: 17px; }
   .notes { margin-top: 22px; font-size: 15px; max-width: 76ch; }
 </style>

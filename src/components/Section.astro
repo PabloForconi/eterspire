@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import { md } from '../lib/md';
 
 interface Props {
@@ -8,15 +10,18 @@ interface Props {
   intro?: string;
   /** Continues the previous section: no divider and a smaller heading. */
   sub?: boolean;
+  tone?: 'light' | 'dark';
+  logo?: ImageMetadata;
 }
 
-const { id, eyebrow, title, intro, sub = false } = Astro.props;
+const { id, eyebrow, title, intro, sub = false, tone = 'light', logo } = Astro.props;
 ---
 
-<section class:list={['section', { sub }]} id={id}>
+<section class:list={['section', { sub, 'tone-dark': tone === 'dark' }]} id={id}>
   <div class="wrap">
     <header class="section-head">
-      {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+      {logo && <Image src={logo} alt="" height={104} class="section-logo" />}
+      {eyebrow && <div class="eyebrow"><span class="tag">{eyebrow}</span></div>}
       {sub ? <h3>{title}</h3> : <h2>{title}</h2>}
       {intro && <div class="intro" set:html={md(intro)} />}
     </header>

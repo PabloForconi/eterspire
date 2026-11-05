@@ -1,18 +1,41 @@
-/* Default Press Over look. A proposal can override --accent via `theme.accent`. */
+/*
+ * Press Over look (based on pressover.news): dark #151515 frame, white content panel with rounded
+ * top corners, magenta #ff005b, Inter for headings/labels and Source Sans 3 for text.
+ * A proposal can override --accent via `theme.accent`.
+ */
 :root {
-  --bg: #0d0f14;
-  --surface: #151922;
-  --surface-2: #1c212d;
-  --line: #2a3040;
-  --text: #eef0f5;
-  --muted: #9aa3b5;
-  --accent: #ff5a1f;
-  --accent-ink: #0d0f14;
-  --radius: 14px;
+  --frame: #151515;
+  --accent: #ff005b;
+  /* Darker accent for small text and buttons on white (keeps WCAG AA contrast). */
+  --accent-strong: color-mix(in srgb, var(--accent) 82%, #000);
+  --accent-ink: #fff;
+  --radius: 12px;
   --max: 1120px;
-  --gutter: clamp(16px, 4vw, 40px);
-  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  --font-display: 'Space Grotesk', var(--font-body);
+  --gutter: clamp(16px, 4vw, 48px);
+  --font-body: 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* Light tone (default inside the panel). */
+  --bg: #fff;
+  --surface: #f4f4f5;
+  --surface-2: #e9e9ec;
+  --line: #dddddd;
+  --text: #151515;
+  --body: #333333;
+  --muted: #69727d;
+  --accent-text: var(--accent-strong);
+}
+
+/* Dark tone: the frame, the cover and sections with `tone: dark`. */
+.tone-dark {
+  --bg: var(--frame);
+  --surface: #1f1f21;
+  --surface-2: #29292c;
+  --line: #2e2e32;
+  --text: #ffffff;
+  --body: #d4d4d8;
+  --muted: #9a9aa3;
+  --accent-text: var(--accent);
   color-scheme: dark;
 }
 
@@ -20,53 +43,71 @@
 html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 body {
   margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font: 400 17px/1.6 var(--font-body);
+  background: var(--frame);
+  color: var(--body);
+  font: 400 18px/1.6 var(--font-body);
   -webkit-font-smoothing: antialiased;
 }
 img { max-width: 100%; height: auto; display: block; }
-a { color: var(--accent); }
-h1, h2, h3 { font-family: var(--font-display); line-height: 1.1; margin: 0; letter-spacing: -0.02em; }
+a { color: var(--accent-text); }
+h1, h2, h3 { font-family: var(--font-display); color: var(--text); line-height: 1.12; margin: 0; letter-spacing: -0.025em; font-weight: 800; }
 p { margin: 0 0 1em; }
 p:last-child { margin-bottom: 0; }
+strong { color: var(--text); font-weight: 700; }
 
 .wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
-.eyebrow {
-  display: inline-block;
-  font: 600 13px/1 var(--font-body);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 14px;
+
+/* White sheet the proposal sits on, like the content area of pressover.news. */
+.panel {
+  background: var(--bg);
+  max-width: 1240px;
+  margin: 0 auto;
+  border-radius: var(--radius) var(--radius) 0 0;
+  overflow: clip;
 }
+
+/* Slanted magenta label, like the "Tendencias" tag on pressover.news. */
+.tag {
+  display: inline-block;
+  padding: 6px 16px 6px 12px;
+  background: var(--accent-strong);
+  color: var(--accent-ink);
+  font: 800 12px/1.2 var(--font-display);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+}
+.eyebrow { margin-bottom: 18px; }
 .muted { color: var(--muted); }
-.prose { max-width: 68ch; color: var(--muted); }
-.prose strong { color: var(--text); }
+.prose { max-width: 70ch; }
 
 /* Sections */
-.section { padding: clamp(64px, 10vw, 120px) 0; border-top: 1px solid var(--line); }
-.section-head { margin-bottom: clamp(28px, 5vw, 48px); max-width: 760px; }
-.section-head h2 { font-size: clamp(30px, 5vw, 48px); }
-.section-head .intro { margin-top: 18px; font-size: 19px; color: var(--muted); }
-.section.sub { border-top: 0; padding-top: 0; }
+.section { background: var(--bg); color: var(--body); padding: clamp(64px, 9vw, 112px) 0; }
+.section + .section:not(.sub):not(.tone-dark) { border-top: 1px solid var(--line); }
+.tone-dark + .section:not(.tone-dark) { border-top: 0; }
+.section-head { margin-bottom: clamp(28px, 5vw, 48px); max-width: 800px; }
+.section-head h2 { font-size: clamp(30px, 4.6vw, 46px); }
+.section-head .intro { margin-top: 18px; font-size: 20px; color: var(--muted); }
+.section-head .intro strong { color: var(--text); }
+.section-logo { height: 52px; width: auto; margin-bottom: 26px; }
+.section.sub { padding-top: 0; }
 .section.sub .section-head { margin-bottom: clamp(20px, 3vw, 32px); }
+/* Sub-section headings get the short magenta rule used above titles on pressover.news. */
 .section.sub .section-head h3 { font-size: clamp(22px, 3vw, 30px); }
-.section.sub .section-head .intro { font-size: 17px; margin-top: 12px; }
-/* A section followed by a sub-section keeps less space below it. */
+.section.sub .section-head h3::before {
+  content: ''; display: block; width: 36px; height: 3px; background: var(--accent); margin-bottom: 16px;
+}
+.section.sub .section-head .intro { font-size: 18px; margin-top: 12px; }
 .section:has(+ .section.sub) { padding-bottom: clamp(48px, 7vw, 80px); }
 
 .card {
   background: var(--surface);
-  border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 26px;
+  padding: 28px;
 }
-.grid { display: grid; gap: 18px; grid-template-columns: 1fr; }
+.grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
 @media (min-width: 720px) {
-  .grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
-  .grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
-  .grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid.cols-2, .grid.cols-3, .grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
 }
 @media (min-width: 1000px) {
   .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
@@ -74,18 +115,20 @@ p:last-child { margin-bottom: 0; }
 }
 
 .list { list-style: none; padding: 0; margin: 0; }
-.list li { position: relative; padding-left: 22px; margin: 8px 0; color: var(--muted); }
+.list li { position: relative; padding-left: 22px; margin: 8px 0; }
 .list li::before {
-  content: ''; position: absolute; left: 0; top: 0.62em;
-  width: 8px; height: 8px; border-radius: 2px; background: var(--accent);
+  content: ''; position: absolute; left: 0; top: 0.6em;
+  width: 9px; height: 9px; background: var(--accent);
+  clip-path: polygon(0 0, 100% 0, 65% 100%, 0 100%);
 }
 
-/* Print / Save as PDF: light paper, no chrome, sections don't split mid-card. */
+/* Print / Save as PDF: no menu, white pages; the cover and dark sections keep their colors. */
 @media print {
-  :root { --bg: #fff; --surface: #f6f7f9; --surface-2: #eef0f4; --line: #dde1e8; --text: #111; --muted: #444; color-scheme: light; }
-  body { font-size: 12pt; }
+  body { font-size: 11.5pt; background: #fff; }
   .no-print { display: none !important; }
-  .section { padding: 36px 0; break-inside: auto; }
+  .panel { max-width: none; border-radius: 0; }
+  .cover, .tone-dark, .tag, .callout { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .section { padding: 32px 0; }
   .card, .phase, tr { break-inside: avoid; }
   .section-head { break-after: avoid; }
   a { color: inherit; text-decoration: none; }
