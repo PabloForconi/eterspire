@@ -38,14 +38,17 @@ sections:
     eyebrow: Objetivos
     nav: Objetivos
     title: Qué buscamos construir juntos
-    columns: 3
+    intro: La alianza entre Eterspire y Press Over busca desarrollar una estrategia de comunicación y posicionamiento que permita aprovechar los distintos espacios de contacto con la comunidad gamer y el ecosistema de desarrollo de videojuegos.
+    columns: 2
     items:
-      - title: Más jugadores descubriendo Eterspire
-        body: Acercar el juego a nuevas audiencias de Argentina y Latinoamérica mediante contenidos audiovisuales, novedades y presencia recurrente en los canales de Press Over.
-      - title: Una comunidad más conectada
-        body: Generar oportunidades para que nuestra audiencia conozca el MMORPG, lo pruebe y encuentre motivos para sumarse a su comunidad. Los beneficios, códigos y acciones especiales permitirán convertir la difusión en experiencias concretas para los jugadores.
-      - title: Más visibilidad para Stonehollow Workshop
-        body: Compartir la historia y la experiencia del equipo detrás de Eterspire, mostrando el trabajo que implica desarrollar y sostener un videojuego independiente con alcance internacional.
+      - title: Posicionamiento y reconocimiento de marca
+        body: Consolidar la presencia de Eterspire dentro del mercado gamer argentino y latinoamericano, aprovechando la llegada y credibilidad de Press Over como medio especializado en videojuegos.
+      - title: Alcance y adquisición de nuevos jugadores
+        body: Ampliar el conocimiento del juego entre nuevas audiencias, destacando sus características, novedades y propuesta de juego. Generar oportunidades para que más personas descubran Eterspire, lo prueben y se incorporen a su comunidad.
+      - title: Fidelización y participación de la comunidad
+        body: Fortalecer el vínculo con los jugadores actuales y potenciales mediante contenidos recurrentes, beneficios exclusivos, códigos promocionales y acciones especiales a través de Press Over Club.
+      - title: Visibilidad dentro de la industria del videojuego
+        body: Posicionar a Eterspire y Stonehollow Workshop como referentes del desarrollo independiente argentino, generando espacios para compartir su experiencia, mostrar el proyecto y conectar con otros integrantes de la industria a través de Indie Dev Argentina 2027.
 
   - type: cards
     eyebrow: Comunicación
