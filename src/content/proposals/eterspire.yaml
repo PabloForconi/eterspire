@@ -13,7 +13,7 @@ clientUrl: https://eterspire.com/
 hero:
   eyebrow: Propuesta comercial
   headline: Eterspire × Press Over
-  subhead: Comunicación, comunidad y participación en Indie Dev Argentina 2027.
+  subhead: Difusión, comunidad y participación en Indie Dev Argentina 2027.
   image: ../../assets/proposals/eterspire/key-art-tavern.webp
   layout: ficha
 
@@ -30,7 +30,7 @@ sections:
 
       Al mismo tiempo, nos interesa darle visibilidad a **la historia detrás del proyecto y al trabajo de Stonehollow Workshop**, poniendo en valor el talento y la capacidad de los estudios argentinos para desarrollar videojuegos con proyección internacional.
 
-      Para eso, proponemos una colaboración que integre dos dimensiones: **una estrategia de comunicación sostenida** a través de los diferentes canales de Press Over y **una participación destacada en Indie Dev Argentina 2027 (IDA)**, nuestro encuentro anual dedicado al desarrollo independiente de videojuegos.
+      Para eso, proponemos una colaboración que integre dos dimensiones: **una presencia sostenida** a través de los diferentes canales de Press Over y **una participación destacada en Indie Dev Argentina 2027 (IDA)**, nuestro encuentro anual dedicado al desarrollo independiente de videojuegos.
 
       Buscamos construir **una relación que genere valor para ambas partes**: potenciando el crecimiento de Eterspire y contribuyendo a visibilizar el desarrollo de videojuegos argentino dentro de la comunidad regional.
 
@@ -38,22 +38,22 @@ sections:
     eyebrow: Objetivos
     nav: Objetivos
     title: Qué buscamos construir juntos
-    intro: La alianza entre Eterspire y Press Over busca desarrollar una estrategia de comunicación y posicionamiento que permita aprovechar los distintos espacios de contacto con la comunidad gamer y el ecosistema de desarrollo de videojuegos.
+    intro: La alianza entre Eterspire y Press Over busca desarrollar una propuesta de difusión y presencia que permita aprovechar los distintos espacios de contacto con la comunidad gamer y el ecosistema de desarrollo de videojuegos.
     columns: 2
     items:
-      - title: Posicionamiento y reconocimiento de marca
+      - title: Presencia en la comunidad gamer
         body: Consolidar la presencia de Eterspire dentro del mercado gamer argentino y latinoamericano, aprovechando la llegada y credibilidad de Press Over como medio especializado en videojuegos.
       - title: Alcance y adquisición de nuevos jugadores
         body: Ampliar el conocimiento del juego entre nuevas audiencias, destacando sus características, novedades y propuesta de juego. Generar oportunidades para que más personas descubran Eterspire, lo prueben y se incorporen a su comunidad.
       - title: Fidelización y participación de la comunidad
         body: Fortalecer el vínculo con los jugadores actuales y potenciales mediante contenidos recurrentes, beneficios exclusivos, códigos promocionales y acciones especiales a través de Press Over Club.
       - title: Visibilidad dentro de la industria del videojuego
-        body: Posicionar a Eterspire y Stonehollow Workshop como referentes del desarrollo independiente argentino, generando espacios para compartir su experiencia, mostrar el proyecto y conectar con otros integrantes de la industria a través de Indie Dev Argentina 2027.
+        body: Destacar a Eterspire y Stonehollow Workshop como referentes del desarrollo independiente argentino, generando espacios para compartir su experiencia, mostrar el proyecto y conectar con otros integrantes de la industria a través de Indie Dev Argentina 2027.
 
   - type: cards
-    eyebrow: Comunicación
-    nav: Comunicación
-    id: comunicacion
+    eyebrow: Difusión
+    nav: Difusión
+    id: difusion
     title: Eterspire en Press Over
     intro: Durante el período de colaboración, Eterspire tendrá presencia en distintos espacios de Press Over. La propuesta combina contenidos audiovisuales, cobertura de novedades, difusión a través de nuestra newsletter y presencia publicitaria en la web, con el objetivo de mantener el juego dentro de la conversación de nuestra comunidad.
     columns: 2
@@ -150,11 +150,11 @@ sections:
     id: inversion
     title: La inversión
     body: |
-      La alianza contempla dos componentes: la comunicación de Eterspire durante el período contratado con Press Over y su participación como Main Sponsor de IDA 2027. La contratación conjunta permite acceder a un valor preferencial para el patrocinio del evento.
+      La alianza contempla dos componentes: la difusión de Eterspire durante el período contratado con Press Over y su participación como Main Sponsor de IDA 2027. La contratación conjunta permite acceder a un valor preferencial para el patrocinio del evento.
 
   - type: pricing
     sub: true
-    title: Comunicación de Eterspire en Press Over
+    title: Difusión de Eterspire en Press Over
     packages:
       - { name: Anual, price: ARS 10.000.000, period: 12 meses }
       - { name: Semestral, price: ARS 5.000.000, period: 6 meses }
@@ -165,11 +165,11 @@ sections:
     sub: true
     title: Eterspire como Main Sponsor de IDA 2027
     intro: |
-      El valor de referencia del patrocinio Main Sponsor es de **USD 5.000**. Al contratar simultáneamente un plan de comunicación con Press Over, Eterspire accede a las siguientes condiciones preferenciales:
+      El valor de referencia del patrocinio Main Sponsor es de **USD 5.000**. Al contratar simultáneamente un plan de difusión con Press Over, Eterspire accede a las siguientes condiciones preferenciales:
     columns: [Contratación de Press Over, "Main Sponsor\nIDA 2027"]   # \n = line break on phones
     align: [left, right]
     rows:
-      - [Sin plan de comunicación, USD 5.000]
+      - [Sin plan de difusión, USD 5.000]
       - [Plan semestral · 6 meses, USD 4.000]
       - [Plan anual · 12 meses, USD 3.000]
     notes: Con el plan semestral, el beneficio representa un ahorro de USD 1.000 sobre el valor de referencia. Con el plan anual, el ahorro es de USD 2.000.
@@ -178,7 +178,7 @@ sections:
     sub: true
     title: Un mes para comenzar antes
     callout: true
-    body: Si la colaboración comienza en diciembre de 2026, ese mes de comunicación en Press Over será bonificado. Así, Eterspire podrá iniciar su presencia en nuestros canales antes del período regular de contratación, sin costo adicional por diciembre.
+    body: Si la colaboración comienza en diciembre de 2026, ese mes de presencia en Press Over será bonificado. Así, Eterspire podrá iniciar su presencia en nuestros canales antes del período regular de contratación, sin costo adicional por diciembre.
 
   - type: text
     sub: true
@@ -197,7 +197,7 @@ sections:
     intro: Para implementar las acciones propuestas, necesitaremos contar con algunos materiales e información por parte de Eterspire.
     columns: 3
     items:
-      - title: Materiales de comunicación
+      - title: Materiales de difusión
         items:
           - Trailer oficial del juego en alta calidad.
           - Logos y recursos gráficos de Eterspire.
@@ -224,7 +224,7 @@ sections:
     body: |
       Desde Press Over creemos que Eterspire tiene una historia y un proyecto que vale la pena seguir impulsando dentro de la comunidad gamer latinoamericana y del ecosistema de desarrollo independiente.
 
-      Esta propuesta busca construir una colaboración a largo plazo que combine comunicación, posicionamiento y participación activa en la industria, generando valor tanto para Eterspire como para nuestra comunidad.
+      Esta propuesta busca construir una colaboración a largo plazo que combine difusión, presencia y participación activa en la industria, generando valor tanto para Eterspire como para nuestra comunidad.
 
       Esperamos poder acompañar el crecimiento del proyecto y contar con Eterspire como parte de Press Over y de Indie Dev Argentina 2027.
     contacts:
