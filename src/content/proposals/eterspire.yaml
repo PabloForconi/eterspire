@@ -81,6 +81,7 @@ sections:
         body: Eterspire contará con un banner publicitario dentro de la sección de notas de pressover.news, manteniendo su presencia frente a los lectores que siguen las noticias, análisis y novedades de la industria de los videojuegos.
         items:
           - Banner publicado durante todo el período contratado.
+    notes: Además, la mayoría de estos contenidos se difunden a través de las redes sociales de Press Over (X, Instagram y TikTok), ampliando su alcance más allá de nuestros canales principales.
 
   - type: table
     sub: true
@@ -91,6 +92,7 @@ sections:
       - [Notas y novedades en pressover.news, "Según actualizaciones, eventos, lanzamientos y anuncios"]
       - [Newsletter semanal, "Semanal, cuando haya novedades relevantes"]
       - [Banner en pressover.news, Durante todo el período contratado]
+      - [Difusión en redes sociales (X, Instagram y TikTok), Acompañando la publicación de los contenidos]
     notes: Las publicaciones editoriales estarán sujetas a la disponibilidad de información y al criterio periodístico de Press Over.
 
   - type: cards
