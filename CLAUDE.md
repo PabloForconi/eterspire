@@ -41,8 +41,8 @@ for headings and labels, Source Sans 3 for text, slanted magenta tags for eyebro
 sub-section headings.
 
 ## Eterspire assets
-`src/assets/proposals/eterspire/` holds the logo (`page_logo.png`) and the tavern key art (`tavern_background.webp`),
-downloaded from https://eterspire.com. Official links found there, in case the proposal needs them:
+`src/assets/proposals/eterspire/` holds `logo.png` and `key-art-tavern.webp` (the tavern illustration),
+downloaded from https://eterspire.com (`images/page_logo.png`, `images/tavern_background.webp`). Official links found there, in case the proposal needs them:
 Steam https://store.steampowered.com/app/2144600/Eterspire/, App Store https://apps.apple.com/us/app/eterspire/id1658183817/,
 Google Play https://play.google.com/store/apps/details?id=com.StonehollowWorkshop.Eterspire,
 Discord https://discord.com/servers/eterspire-814967791840264232, Reddit https://reddit.com/r/eterspire,
