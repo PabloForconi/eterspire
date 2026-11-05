@@ -4,10 +4,8 @@ client: Eterspire
 project: Eterspire
 title: Eterspire × Press Over — Propuesta comercial
 date: 2026-11-05
-presentedTo: Eterspire · Stonehollow Workshop
 meta:
-  - { label: Período, value: 2026 / 2027 }
-  - { label: Mercado objetivo, value: Argentina y Latinoamérica }
+  - { label: Período de colaboración, value: Diciembre 2026 – Diciembre 2027 }
 # Logo and key art from https://eterspire.com
 clientLogo: ../../assets/proposals/eterspire/logo.png
 clientUrl: https://eterspire.com/
@@ -15,9 +13,7 @@ clientUrl: https://eterspire.com/
 hero:
   eyebrow: Propuesta comercial
   headline: Eterspire × Press Over
-  subhead: |
-    Una alianza para hacer crecer Eterspire en Latinoamérica.
-    Comunicación, comunidad y participación en Indie Dev Argentina 2027.
+  subhead: Comunicación, comunidad y participación en Indie Dev Argentina 2027.
   image: ../../assets/proposals/eterspire/key-art-tavern.webp
   layout: ficha
 
