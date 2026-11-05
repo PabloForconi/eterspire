@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { md } from '../../lib/md';
+
+interface Member { name: string; role: string; bio?: string; photo?: ImageMetadata }
+const { members } = Astro.props as { members: Member[] };
+const initials = (name: string) =>
+  name.split(/\s+/).map((w) => w.charAt(0)).slice(0, 2).join('').toUpperCase();
+---
+
+<div class="grid cols-3">
+  {
+    members.map((m) => (
+      <article class="card member">
+        {m.photo ? (
+          <Image src={m.photo} alt={m.name} width={160} height={160} class="photo" />
+        ) : (
+          <span class="photo initials" aria-hidden="true">{initials(m.name)}</span>
+        )}
+        <h3>{m.name}</h3>
+        <span class="role">{m.role}</span>
+        {m.bio && <div class="muted bio" set:html={md(m.bio)} />}
+      </article>
+    ))
+  }
+</div>
+
+<style>
+  .photo { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; margin-bottom: 18px; }
+  .initials {
+    display: grid; place-items: center; background: var(--surface-2); border: 1px solid var(--line);
+    font: 700 24px/1 var(--font-display); color: var(--accent);
+  }
+  h3 { font-size: 20px; }
+  .role { display: block; color: var(--accent); font-size: 15px; font-weight: 500; margin: 4px 0 12px; }
+  .bio { font-size: 15px; }
+</style>

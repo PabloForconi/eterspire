@@ -1,0 +1,83 @@
+---
+import { useT, type Lang } from '../lib/i18n';
+
+interface Props {
+  lang: Lang;
+  project: string;
+  links: { id: string; label: string }[];
+}
+
+const { lang, project, links } = Astro.props;
+const t = useT(lang);
+---
+
+<nav class="nav no-print" aria-label={t('contents')}>
+  <div class="wrap bar">
+    <a href="#top" class="project">{project}</a>
+    <ul class="links">
+      {links.map((l) => <li><a href={`#${l.id}`} data-nav={l.id}>{l.label}</a></li>)}
+    </ul>
+    <button type="button" class="print" onclick="window.print()">{t('print')}</button>
+  </div>
+</nav>
+
+<script>
+  // Highlight the menu link of the section currently on screen. Sections without a link
+  // (sub-sections, hidden ones) count as part of the closest linked section before them.
+  const links = new Map(
+    [...document.querySelectorAll<HTMLAnchorElement>('[data-nav]')].map((a) => [a.dataset.nav!, a]),
+  );
+  const owner = new Map<Element, HTMLAnchorElement | undefined>();
+  let current: HTMLAnchorElement | undefined;
+  for (const s of document.querySelectorAll('main > section')) {
+    current = links.get(s.id) ?? current;
+    owner.set(s, current);
+  }
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        const active = owner.get(e.target);
+        if (!active || active.hasAttribute('aria-current')) continue;
+        links.forEach((a) => a.removeAttribute('aria-current'));
+        active.setAttribute('aria-current', 'true');
+        active.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+      }
+    },
+    { rootMargin: '-45% 0px -50% 0px' },
+  );
+  owner.forEach((_, s) => observer.observe(s));
+</script>
+
+<style>
+  .nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--line);
+  }
+  .bar { display: flex; align-items: center; gap: 24px; height: 60px; }
+  .project { font: 700 16px/1 var(--font-display); color: var(--text); text-decoration: none; white-space: nowrap; }
+  .links {
+    list-style: none; margin: 0; padding: 0; display: flex; gap: 4px; flex: 1; min-width: 0;
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .links::-webkit-scrollbar { display: none; }
+  .links a {
+    display: block; padding: 8px 9px; border-radius: 8px; font-size: 14px; font-weight: 500;
+    color: var(--muted); text-decoration: none; white-space: nowrap;
+  }
+  .links a:hover { color: var(--text); }
+  .links a[aria-current] { color: var(--text); background: var(--surface-2); }
+  .print {
+    font: 600 14px/1 var(--font-body); color: var(--accent-ink); background: var(--accent);
+    border: 0; border-radius: 8px; padding: 10px 14px; cursor: pointer; white-space: nowrap;
+  }
+  /* The project name gives way to the section links on narrower screens. */
+  @media (max-width: 1360px) {
+    .bar { gap: 16px; }
+    .project { display: none; }
+  }
+  @media (max-width: 640px) {
+    .print { padding: 10px; font-size: 13px; }
+  }
+</style>

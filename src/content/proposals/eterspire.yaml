@@ -1,0 +1,256 @@
+# Source: _material/Propuesta_comercial_Eterspire_Press_Over.docx
+lang: es
+client: Eterspire
+project: Eterspire
+title: Eterspire × Press Over — Propuesta comercial
+date: 2026-11-05
+meta:
+  - { label: País, value: Argentina }
+  - { label: Período, value: 2026/2027 }
+
+hero:
+  eyebrow: Propuesta comercial
+  headline: Eterspire × Press Over
+  subhead: Comunicación, comunidad y desarrollo independiente
+
+sections:
+  - type: text
+    eyebrow: Eterspire × Press Over
+    nav: La alianza
+    title: Una alianza para conectar con la comunidad gamer de Latinoamérica e impulsar el desarrollo independiente.
+    body: |
+      Eterspire es un proyecto que representa el potencial de los videojuegos independientes argentinos. A través de una propuesta propia dentro del género MMORPG, ha conseguido desarrollar una comunidad internacional y construir una identidad dentro de un mercado altamente competitivo.
+
+      Desde Press Over queremos acompañar ese crecimiento mediante una alianza que permita ampliar su presencia en Latinoamérica, acercar el juego a nuevos públicos y fortalecer el vínculo con su comunidad de jugadores.
+
+      Al mismo tiempo, nos interesa darle visibilidad a la historia detrás del proyecto y al trabajo de Stonehollow Workshop, poniendo en valor el talento y la capacidad de los estudios argentinos para desarrollar videojuegos con proyección internacional.
+
+      Para eso, proponemos una colaboración que integre dos dimensiones: **una estrategia de comunicación sostenida** a través de los diferentes canales de Press Over y **una participación destacada en Indie Dev Argentina 2027 (IDA)**, nuestro encuentro anual dedicado al desarrollo independiente de videojuegos.
+
+      Buscamos construir una relación que genere valor para ambas partes: potenciando el crecimiento de Eterspire y contribuyendo a visibilizar el desarrollo de videojuegos argentino dentro de la comunidad regional.
+
+  - type: cards
+    eyebrow: Objetivos
+    nav: Objetivos
+    title: Objetivos de la colaboración
+    intro: La alianza entre Eterspire y Press Over busca desarrollar una estrategia de comunicación y posicionamiento que permita aprovechar los distintos espacios de contacto con la comunidad gamer y el ecosistema de desarrollo de videojuegos.
+    columns: 2
+    items:
+      - title: Posicionamiento y reconocimiento de marca
+        body: Consolidar la presencia de Eterspire dentro del mercado gamer argentino y latinoamericano, aprovechando la llegada y credibilidad de Press Over como medio especializado en videojuegos.
+      - title: Alcance y adquisición de nuevos jugadores
+        body: Ampliar el conocimiento del juego entre nuevas audiencias, destacando sus características, novedades y propuesta de juego. Generar oportunidades para que más personas descubran Eterspire, lo prueben y se incorporen a su comunidad.
+      - title: Fidelización y participación de la comunidad
+        body: Fortalecer el vínculo con los jugadores actuales y potenciales mediante contenidos recurrentes, beneficios exclusivos, códigos promocionales y acciones especiales a través de Press Over Club.
+      - title: Visibilidad dentro de la industria del videojuego
+        body: Posicionar a Eterspire y Stonehollow Workshop como referentes del desarrollo independiente argentino, generando espacios para compartir su experiencia, mostrar el proyecto y conectar con otros integrantes de la industria a través de Indie Dev Argentina 2027.
+
+  - type: cards
+    eyebrow: Comunicación
+    nav: Comunicación
+    title: Estrategia de comunicación en Press Over
+    intro: |
+      Proponemos desarrollar una presencia sostenida de Eterspire dentro del ecosistema de Press Over, combinando espacios audiovisuales, cobertura editorial y publicidad digital.
+
+      La estrategia busca que el juego forme parte de la conversación habitual de nuestra comunidad, acompañando sus novedades y generando oportunidades recurrentes para que nuevos jugadores lo descubran.
+    columns: 3
+    items:
+      - title: Presencia en streams de Press Over
+        body: Incorporación de Eterspire dentro de las transmisiones de Press Over en YouTube.
+        items:
+          - Exhibición del tráiler oficial del juego durante los streams.
+          - Entre 3 y 4 reproducciones mensuales.
+          - Posibilidad de acompañar las reproducciones con menciones de los conductores, presentando el juego y destacando sus principales características.
+        note: Esto permitirá mantener una presencia audiovisual recurrente y acercar Eterspire a nuestra audiencia de una manera natural.
+      - title: Cobertura editorial en Press Over
+        body: Publicación y difusión de las principales novedades de Eterspire a través de nuestro sitio web.
+        items:
+          - Publicación de noticias sobre actualizaciones, eventos, novedades y anuncios relevantes del juego.
+          - Publicación de gacetillas oficiales proporcionadas por el equipo de Eterspire.
+          - Difusión de las novedades más relevantes durante Press Over Podcast, cuando el contenido y la agenda del programa lo permitan.
+        note: El objetivo es acompañar la evolución del juego y mantener informada a nuestra audiencia sobre sus novedades.
+      - title: Banner publicitario en la web
+        body: |
+          Presencia de Eterspire mediante un banner dentro de la sección de notas de pressover.news.
+
+          Esta ubicación permitirá mantener la marca visible para los lectores que visitan nuestro sitio en busca de noticias, análisis y novedades de la industria de los videojuegos.
+        note: La presencia se mantendrá durante todo el período de contratación.
+
+  - type: table
+    sub: true
+    title: Resumen de acciones incluidas
+    columns: [Servicio, Frecuencia]
+    rows:
+      - [Exhibición del tráiler en streams, 3 a 4 veces por mes]
+      - [Publicación de novedades en la web, Según novedades y calendario]
+      - [Publicación de gacetillas, Según material recibido]
+      - [Menciones en Press Over Podcast, Según relevancia y programación]
+      - [Banner publicitario en la web, Durante todo el período de contratación]
+    notes: Las publicaciones editoriales estarán sujetas a la disponibilidad de información y al criterio periodístico de Press Over.
+
+  - type: cards
+    eyebrow: Press Over Club
+    nav: Press Over Club
+    title: Beneficios exclusivos para nuestra comunidad.
+    intro: |
+      Como parte de la colaboración, proponemos incorporar a Eterspire dentro de Press Over Club, nuestro espacio de beneficios y ventajas para los miembros de nuestra comunidad.
+
+      La iniciativa busca generar un vínculo directo entre los suscriptores de Press Over y el universo de Eterspire, ofreciendo incentivos para descubrir el juego, participar de sus actividades y sumarse a su comunidad.
+    columns: 4
+    items:
+      - title: Códigos promocionales
+        body: Disponibilidad de códigos exclusivos para los miembros de Press Over Club.
+      - title: Beneficios dentro del juego
+        body: Recompensas, objetos u otras ventajas especiales para quienes formen parte de nuestra comunidad.
+      - title: Sorteos especiales
+        body: Posibilidad de organizar sorteos de códigos o recompensas de Eterspire a través de nuestros canales.
+      - title: Acciones especiales
+        body: Dinámicas puntuales para promover la participación de la comunidad y generar nuevas oportunidades de difusión.
+    notes: |
+      La implementación y las características de estos beneficios se coordinarán con el equipo de Eterspire, de acuerdo con las posibilidades que ofrezca el juego.
+
+      El objetivo es transformar la exposición de marca en una experiencia concreta para nuestra comunidad, generando incentivos para que nuevos jugadores conozcan Eterspire y los jugadores actuales fortalezcan su vínculo con el proyecto.
+
+  - type: text
+    eyebrow: Indie Dev Argentina 2027 (IDA)
+    nav: IDA 2027
+    id: ida-2027
+    title: Eterspire como Main Sponsor del encuentro.
+    body: |
+      Eterspire ya ha demostrado su compromiso con la industria nacional, participando como Main Sponsor de la EVA y acompañando el crecimiento y la visibilidad del desarrollo de videojuegos en Argentina.
+
+      Desde Press Over queremos invitarlos a continuar ese camino formando parte de Indie Dev Argentina 2027 (IDA), nuestro encuentro anual dedicado al desarrollo independiente de videojuegos y el segundo evento de mayor escala del país dentro de este segmento.
+
+      Organizado por Press Over, IDA reúne a desarrolladores, estudios, profesionales, estudiantes y entusiastas de la industria, generando un espacio de encuentro, intercambio y visibilidad para los proyectos que forman parte del ecosistema local.
+
+      La participación de Eterspire como Main Sponsor representa una oportunidad para seguir fortaleciendo su vínculo con la comunidad de desarrollo, compartir la experiencia de Stonehollow Workshop y acompañar el crecimiento de una industria de la que el propio estudio forma parte.
+
+  - type: cards
+    sub: true
+    title: Beneficios como Main Sponsor
+    columns: 2
+    items:
+      - title: IDA 2027 presentado por Eterspire
+        items:
+          - Presencia de Eterspire en la comunicación oficial de IDA 2027.
+          - Inclusión de la marca en las principales piezas de difusión.
+          - Asociación institucional bajo la denominación «IDA 2027 presentado por Eterspire».
+      - title: Espacio para una charla
+        items:
+          - Eterspire contará con un espacio asegurado dentro de la programación oficial del evento.
+          - La presentación podrá estar a cargo de integrantes de Stonehollow Workshop y abordar el proceso de desarrollo de Eterspire, los desafíos de crear y mantener un MMORPG independiente, la construcción de una comunidad internacional y la experiencia de desarrollar videojuegos desde Argentina para el mundo.
+          - La temática y los participantes se coordinarán junto al equipo de IDA.
+      - title: Espacio de exhibición del videojuego
+        items:
+          - Eterspire contará con un espacio para presentar el juego a los asistentes.
+          - Podrá incluir exhibición de videos y material audiovisual, estaciones de juego, material promocional y códigos de beneficios, e interacción directa con integrantes del equipo de desarrollo.
+      - title: Premio presentado por Eterspire
+        items:
+          - Eterspire tendrá la posibilidad de presentar uno de los premios de IDA 2027, asociando su marca a una instancia de reconocimiento del talento y la creatividad dentro del desarrollo independiente.
+          - La categoría, modalidad y características del premio se definirán junto a la organización.
+
+  - type: table
+    sub: true
+    title: Categorías de patrocinio IDA 2027
+    intro: Además de la categoría Main Sponsor, IDA contará con diferentes niveles de participación comercial para empresas y organizaciones interesadas en acompañar el evento.
+    columns: [Categoría, Valor de referencia]
+    align: [left, right]
+    rows:
+      - [Main Sponsor, USD 5.000]
+      - [Gold Sponsor, USD 3.000]
+      - [Silver Sponsor, USD 2.000]
+      - [Bronze Sponsor, USD 1.000]
+      - [Partners, A convenir]
+    notes: Cada categoría contempla diferentes niveles de visibilidad, presencia institucional y participación, de acuerdo con el aporte realizado.
+
+  - type: text
+    eyebrow: Propuesta económica
+    nav: Propuesta económica
+    id: propuesta-economica
+    title: Una alianza con beneficios por contratación conjunta.
+    body: |
+      La propuesta contempla dos líneas de colaboración complementarias: una estrategia de comunicación sostenida en Press Over y la participación de Eterspire como Main Sponsor de Indie Dev Argentina 2027.
+
+  - type: pricing
+    sub: true
+    title: 1. Planes de comunicación – Press Over
+    intro: Eterspire podrá elegir entre tres modalidades de contratación, de acuerdo con el alcance y la duración de la campaña.
+    packages:
+      - { name: Anual, price: "$10.000.000 ARS", period: 12 meses }
+      - { name: Semestral, price: "$5.000.000 ARS", period: 6 meses }
+      - { name: Mensual, price: "$1.000.000 ARS", period: 1 mes }
+    notes: Los planes semestral y anual podrán abonarse en cuotas mensuales durante el período de contratación.
+
+  - type: table
+    sub: true
+    title: 2. Patrocinio IDA 2027
+    intro: |
+      El valor de referencia para participar como Main Sponsor de IDA 2027 es de **USD 5.000**.
+
+      Para las empresas que contraten simultáneamente un plan de comunicación con Press Over, ofrecemos condiciones comerciales preferenciales:
+    columns: [Modalidad de contratación, Valor Main Sponsor]
+    align: [left, right]
+    rows:
+      - [Sin contratación de Press Over, USD 5.000]
+      - [Press Over – 6 meses, USD 4.000]
+      - [Press Over – 12 meses, USD 3.000]
+    notes: La contratación conjunta permite acceder a un descuento de hasta USD 2.000 sobre el valor de referencia del patrocinio Main Sponsor.
+
+  - type: text
+    sub: true
+    title: 3. Beneficio de inicio de campaña
+    callout: true
+    body: |
+      **Contratando cualquiera de los planes de Press Over con inicio en diciembre de 2026, el servicio correspondiente a ese mes será bonificado.**
+
+      De esta manera, Eterspire podrá comenzar a tener presencia en nuestros canales desde diciembre, sin costo adicional por ese primer mes.
+
+  - type: text
+    sub: true
+    title: Métodos de pago y facturación
+    body: |
+      Press Over podrá emitir facturas tipo A para operaciones dentro de Argentina, con los impuestos correspondientes, y facturas tipo E para operaciones con clientes del exterior.
+
+      - **Contratación de Press Over:** el servicio podrá abonarse mediante transferencia bancaria, con frecuencia mensual durante el período contratado.
+      - **Patrocinio IDA 2027:** se abonará mediante un único pago, una vez confirmada la participación de Eterspire como Main Sponsor.
+
+      Los datos bancarios y las instrucciones para realizar los pagos serán proporcionados una vez confirmada la aceptación de la propuesta.
+
+  - type: cards
+    eyebrow: Requisitos
+    nav: Requisitos
+    title: Requisitos y coordinación de la colaboración
+    intro: Para implementar las acciones propuestas, necesitaremos contar con algunos materiales e información por parte de Eterspire.
+    columns: 3
+    items:
+      - title: Materiales de comunicación
+        items:
+          - Trailer oficial del juego en alta calidad.
+          - Logos y recursos gráficos de Eterspire.
+          - Imágenes y capturas del videojuego.
+          - Información sobre actualizaciones, novedades y anuncios.
+          - Enlaces oficiales de descarga y canales de la comunidad.
+      - title: Materiales para Press Over Club
+        items:
+          - Códigos promocionales o beneficios exclusivos para los suscriptores.
+          - Información sobre las recompensas disponibles y sus condiciones de uso.
+      - title: Participación en IDA 2027
+        items:
+          - Material audiovisual para la exhibición del juego.
+          - Disponibilidad de integrantes de Stonehollow Workshop para la charla.
+          - Definición del premio que será presentado por Eterspire.
+          - Coordinación de las necesidades técnicas y logísticas del espacio de exhibición.
+    notes: Press Over coordinará con el equipo de Eterspire el calendario de publicaciones, las acciones de comunicación y los detalles de participación en IDA 2027.
+
+  - type: contact
+    eyebrow: Cierre
+    nav: Cierre
+    title: Cierre
+    body: |
+      Desde Press Over creemos que Eterspire tiene una historia y un proyecto que vale la pena seguir impulsando dentro de la comunidad gamer latinoamericana y del ecosistema de desarrollo independiente.
+
+      Esta propuesta busca construir una colaboración a largo plazo que combine comunicación, posicionamiento y participación activa en la industria, generando valor tanto para Eterspire como para nuestra comunidad.
+
+      Esperamos poder acompañar el crecimiento del proyecto y contar con Eterspire como parte de Press Over y de Indie Dev Argentina 2027.
+    contacts:
+      - { name: Press Over, role: "Argentina · www.pressover.news", email: ventas.pressover@gmail.com }

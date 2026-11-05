@@ -1,0 +1,25 @@
+---
+import { Image } from 'astro:assets';
+import { md } from '../../lib/md';
+
+const { body, image, callout } = Astro.props;
+---
+
+<div class:list={['text', { 'with-image': image }]}>
+  <div class:list={['prose', { callout }]} set:html={md(body)} />
+  {image && <Image src={image} alt="" widths={[480, 960]} sizes="(min-width: 900px) 45vw, 100vw" class="media" />}
+</div>
+
+<style>
+  .text { font-size: 19px; }
+  .media { border-radius: var(--radius); border: 1px solid var(--line); }
+  .callout {
+    max-width: 820px; padding: 28px 30px; border-radius: var(--radius);
+    border: 1px solid var(--accent); border-left-width: 4px;
+    background: color-mix(in srgb, var(--accent) 9%, var(--surface));
+  }
+  @media (min-width: 900px) {
+    .with-image { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
+  }
+  @media (max-width: 899px) { .media { margin-top: 28px; } }
+</style>

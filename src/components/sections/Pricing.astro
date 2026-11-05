@@ -1,0 +1,55 @@
+---
+import { inline, md } from '../../lib/md';
+import { useT, type Lang } from '../../lib/i18n';
+
+interface Pkg { name: string; price: string; period?: string; description?: string; features: string[]; highlight: boolean }
+const { packages, notes, lang } = Astro.props as { packages: Pkg[]; notes?: string; lang: Lang };
+const t = useT(lang);
+const cols = Math.min(packages.length, 3);
+/** Splits a currency code ("USD 5.000", "$1.000.000 ARS") so it can be shown smaller next to the amount. */
+const splitPrice = (price: string) => {
+  const m = price.match(/^([A-Z]{3})\s+(.+)$/) ?? price.match(/^(.+?)\s+([A-Z]{3})$/);
+  if (!m) return { amount: price };
+  return /^[A-Z]{3}$/.test(m[1]) ? { code: m[1], amount: m[2] } : { amount: m[1], code: m[2] };
+};
+---
+
+<div class={`grid cols-${cols}`}>
+  {
+    packages.map((p) => (
+      <article class:list={['card', 'pkg', { highlight: p.highlight }]}>
+        {p.highlight && <span class="badge">{t('recommended')}</span>}
+        <h3>{p.name}</h3>
+        <div class="price">
+          <span class="amount">{splitPrice(p.price).amount}</span>
+          <span class="sub">
+            {splitPrice(p.price).code && <span class="code">{splitPrice(p.price).code}</span>}
+            {p.period && <span class="period">{p.period}</span>}
+          </span>
+        </div>
+        {p.description && <div class="muted desc" set:html={md(p.description)} />}
+        {p.features.length > 0 && <ul class="list">{p.features.map((f) => <li set:html={inline(f)} />)}</ul>}
+      </article>
+    ))
+  }
+</div>
+{notes && <div class="notes muted" set:html={md(notes)} />}
+
+<style>
+  .pkg { position: relative; display: flex; flex-direction: column; gap: 14px; padding: 30px; }
+  .highlight { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
+  .badge {
+    position: absolute; top: -12px; left: 28px; background: var(--accent); color: var(--accent-ink);
+    font: 700 12px/1 var(--font-body); letter-spacing: 0.08em; text-transform: uppercase; padding: 7px 10px; border-radius: 6px;
+  }
+  h3 { font-size: 22px; }
+  .price { display: flex; flex-direction: column; gap: 8px; }
+  .sub { display: flex; align-items: baseline; gap: 10px; }
+  .sub:empty { display: none; }
+  .amount { font: 700 clamp(32px, 3.4vw, 42px)/1 var(--font-display); letter-spacing: -0.03em; white-space: nowrap; }
+  .code { font: 600 16px/1 var(--font-display); color: var(--accent); }
+  .period { color: var(--muted); font-size: 15px; }
+  .desc { font-size: 16px; }
+  .list { border-top: 1px solid var(--line); padding-top: 14px; font-size: 16px; }
+  .notes { margin-top: 22px; font-size: 15px; max-width: 76ch; }
+</style>

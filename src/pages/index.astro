@@ -1,0 +1,42 @@
+---
+import { getCollection } from 'astro:content';
+import Proposal from '../layouts/Proposal.astro';
+import { formatDate, withBase } from '../lib/i18n';
+
+// With a single proposal the root just forwards to it; with several it lists them (still noindex).
+const proposals = (await getCollection('proposals', (p) => !p.data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+const only = proposals.length === 1 ? withBase(`${proposals[0].id}/`) : undefined;
+---
+
+{
+  only ? (
+    <meta http-equiv="refresh" content={`0; url=${only}`} />
+  ) : (
+    <Proposal lang="en" title="Press Over — Proposals">
+      <main class="wrap list-page">
+        <span class="eyebrow">Press Over</span>
+        <h1>Proposals</h1>
+        <ul>
+          {proposals.map((p) => (
+            <li>
+              <a class="card" href={withBase(`${p.id}/`)}>
+                <strong>{p.data.client} · {p.data.project}</strong>
+                <span class="muted">{p.data.title} — {formatDate(p.data.date, p.data.lang)}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </main>
+    </Proposal>
+  )
+}
+
+<style>
+  .list-page { padding-top: 80px; padding-bottom: 80px; }
+  h1 { font-size: 48px; margin-bottom: 32px; }
+  ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+  .card { display: flex; flex-direction: column; gap: 4px; text-decoration: none; color: var(--text); }
+  .card:hover { border-color: var(--accent); }
+</style>

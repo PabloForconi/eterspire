@@ -1,0 +1,114 @@
+# Press Over proposal template.
+# Copy this file to src/content/proposals/<slug>.yaml; the slug becomes the URL (/<slug>/).
+# Files starting with "_" are not built. Text fields accept light Markdown:
+# blank line = new paragraph, "- " lines = bullet list, **bold**, *italic*, [link](https://...).
+# Quote any one-line text that contains ": " (or use a "|" block), otherwise YAML fails to parse.
+# Images go in src/assets/proposals/<slug>/ and are referenced relative to this file:
+#   ../../assets/proposals/<slug>/cover.jpg
+
+lang: en                      # en | es (UI labels: "Prepared for", "Valid until", ...)
+client: Client Name
+project: Project Name
+title: Proposal title shown in the browser tab
+date: 2026-01-01
+validUntil: 2026-02-01        # optional
+meta:                         # optional extra label/value pairs on the cover
+  - { label: Country, value: Argentina }
+draft: false                 # true = kept in the repo but not built
+theme:
+  accent: "#ff5a1f"           # optional, e.g. the client's brand color
+# clientLogo: ../../assets/proposals/<slug>/logo.png
+
+hero:
+  eyebrow: Commercial proposal
+  headline: One line that sums up the offer
+  subhead: Two lines of context about what we propose and why.
+  # image: ../../assets/proposals/<slug>/key-art.jpg
+
+# Sections render in this order. Every section takes:
+#   type (required), title (required), eyebrow, intro, id (anchor), nav (short menu label), hideInNav,
+#   sub (true = continues the previous section: no divider, smaller heading, not in the menu)
+sections:
+  - type: text
+    eyebrow: Context
+    title: Where you are today
+    body: |
+      Paragraph one.
+
+      Paragraph two with **bold** text.
+
+      - A bullet
+      - Another bullet
+    # image: ../../assets/proposals/<slug>/screenshot.jpg
+
+  - type: text
+    sub: true
+    title: Limited-time benefit
+    callout: true             # highlighted box
+    body: "**Sign before December** and the first month is free."
+
+  - type: stats
+    title: Key numbers
+    items:
+      - { value: "1.2M", label: Wishlists, note: optional footnote }
+
+  - type: cards
+    title: Goals
+    columns: 3                # 2 | 3 | 4
+    items:
+      - { title: Goal one, body: Short explanation. }
+      - { title: Goal two, body: Short explanation., tag: PR }   # tag replaces the 01/02 number
+      - title: Service with details
+        body: What it is.
+        items: [Bullet one, Bullet two]   # bullets inside the card
+        note: Closing line at the bottom of the card.
+    notes: Optional text under the cards.
+
+  - type: timeline
+    title: Plan
+    phases:
+      - name: Phase one
+        when: Weeks 1–2
+        body: What happens in this phase.
+        items: [Deliverable A, Deliverable B]
+
+  - type: table
+    title: Breakdown
+    columns: [Item, Quantity, Price]
+    align: [left, right, right]   # optional, defaults to left
+    rows:
+      - [Item one, "1", "USD 1,000"]
+    footer: [Total, "", "USD 1,000"]
+    notes: Optional note under the table.
+
+  - type: pricing
+    title: Investment
+    packages:
+      - name: Essential
+        price: USD 5,000      # a 3-letter currency code at the start or end is shown smaller
+        period: per month
+        description: Who this is for.
+        features: [Feature one, Feature two]
+        highlight: true       # adds the "Recommended" badge
+    notes: Taxes, payment terms, etc.
+
+  - type: cases
+    title: Past work
+    items:
+      - title: Campaign name
+        client: Client
+        body: What we did.
+        results: [Result one, Result two]
+        # url: https://...
+        # image: ../../assets/proposals/<slug>/case-1.jpg
+
+  - type: team
+    title: Team
+    members:
+      - { name: Full Name, role: Role, bio: One line. }
+
+  - type: contact
+    title: Next steps
+    body: What we need from the client to start.
+    contacts:
+      - { name: Full Name, role: Role, email: name@example.com }

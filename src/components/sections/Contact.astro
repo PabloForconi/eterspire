@@ -1,0 +1,32 @@
+---
+import { md } from '../../lib/md';
+
+interface Person { name: string; role?: string; email: string }
+const { body, contacts } = Astro.props as { body?: string; contacts: Person[] };
+---
+
+{body && <div class="prose lead" set:html={md(body)} />}
+{
+  contacts.length > 0 && (
+    <div class="contacts">
+      {contacts.map((c) => (
+        <a class="card contact" href={`mailto:${c.email}`}>
+          <strong>{c.name}</strong>
+          {c.role && <span class="muted">{c.role}</span>}
+          <span class="email">{c.email}</span>
+        </a>
+      ))}
+    </div>
+  )
+}
+
+<style>
+  .lead { font-size: 19px; margin-bottom: 32px; }
+  .contacts { display: flex; flex-wrap: wrap; gap: 16px; }
+  .contact {
+    display: flex; flex-direction: column; gap: 4px; min-width: min(260px, 100%);
+    text-decoration: none; color: var(--text); transition: border-color 0.15s;
+  }
+  .contact:hover { border-color: var(--accent); }
+  .email { color: var(--accent); margin-top: 8px; font-weight: 500; }
+</style>

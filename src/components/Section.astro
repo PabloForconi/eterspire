@@ -1,0 +1,25 @@
+---
+import { md } from '../lib/md';
+
+interface Props {
+  id: string;
+  eyebrow?: string;
+  title: string;
+  intro?: string;
+  /** Continues the previous section: no divider and a smaller heading. */
+  sub?: boolean;
+}
+
+const { id, eyebrow, title, intro, sub = false } = Astro.props;
+---
+
+<section class:list={['section', { sub }]} id={id}>
+  <div class="wrap">
+    <header class="section-head">
+      {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+      {sub ? <h3>{title}</h3> : <h2>{title}</h2>}
+      {intro && <div class="intro" set:html={md(intro)} />}
+    </header>
+    <slot />
+  </div>
+</section>

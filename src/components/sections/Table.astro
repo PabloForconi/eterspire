@@ -1,0 +1,36 @@
+---
+import { inline, md } from '../../lib/md';
+
+const { columns, align = [], rows, footer, notes } = Astro.props as {
+  columns: string[];
+  align?: ('left' | 'right')[];
+  rows: string[][];
+  footer?: string[];
+  notes?: string;
+};
+const a = (i: number) => (align[i] === 'right' ? 'right' : undefined);
+---
+
+<div class="table-wrap">
+  <table>
+    <thead><tr>{columns.map((c, i) => <th scope="col" class={a(i)}>{c}</th>)}</tr></thead>
+    <tbody>{rows.map((r) => <tr>{r.map((cell, i) => <td class={a(i)} set:html={inline(cell)} />)}</tr>)}</tbody>
+    {footer && <tfoot><tr>{footer.map((cell, i) => <td class={a(i)} set:html={inline(cell)} />)}</tr></tfoot>}
+  </table>
+</div>
+{notes && <div class="notes muted" set:html={md(notes)} />}
+
+<style>
+  .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+  table { width: 100%; border-collapse: collapse; font-size: 16px; }
+  th, td { text-align: left; padding: 14px 18px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th {
+    font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+    font-weight: 600; background: var(--surface-2);
+  }
+  td:first-child { font-weight: 500; }
+  .right { text-align: right; white-space: nowrap; }
+  tbody tr:last-child td { border-bottom: 0; }
+  tfoot td { font-weight: 600; border-top: 2px solid var(--line); border-bottom: 0; background: var(--surface-2); }
+  .notes { margin-top: 16px; font-size: 15px; max-width: 76ch; }
+</style>

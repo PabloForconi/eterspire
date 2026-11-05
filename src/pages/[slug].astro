@@ -1,0 +1,63 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Proposal from '../layouts/Proposal.astro';
+import Cover from '../components/Cover.astro';
+import Nav from '../components/Nav.astro';
+import Section from '../components/Section.astro';
+import Text from '../components/sections/Text.astro';
+import Cards from '../components/sections/Cards.astro';
+import Stats from '../components/sections/Stats.astro';
+import Timeline from '../components/sections/Timeline.astro';
+import Table from '../components/sections/Table.astro';
+import Pricing from '../components/sections/Pricing.astro';
+import Cases from '../components/sections/Cases.astro';
+import Team from '../components/sections/Team.astro';
+import Contact from '../components/sections/Contact.astro';
+import { slugify } from '../lib/md';
+import { useT } from '../lib/i18n';
+
+export async function getStaticPaths() {
+  const proposals = await getCollection('proposals', (p) => !p.data.draft);
+  return proposals.map((p) => ({ params: { slug: p.id }, props: { proposal: p } }));
+}
+
+const { proposal } = Astro.props as { proposal: CollectionEntry<'proposals'> };
+const d = proposal.data;
+const t = useT(d.lang);
+
+/** Section `type` → component. Add a block type here and in src/content.config.ts. */
+const blocks = { text: Text, cards: Cards, stats: Stats, timeline: Timeline, table: Table, pricing: Pricing, cases: Cases, team: Team, contact: Contact };
+
+const sections = d.sections.map((s, i) => ({ ...s, id: s.id ?? (slugify(s.nav ?? s.title) || `section-${i + 1}`) }));
+const links = sections.filter((s) => !s.hideInNav && !s.sub).map((s) => ({ id: s.id, label: s.nav ?? s.title }));
+---
+
+<Proposal lang={d.lang} title={d.title} description={t('by')} accent={d.theme.accent}>
+  <div id="top">
+    <Cover lang={d.lang} client={d.client} date={d.date} validUntil={d.validUntil} meta={d.meta} clientLogo={d.clientLogo} hero={d.hero} />
+  </div>
+  <Nav lang={d.lang} project={d.project} links={links} />
+  <main>
+    {
+      sections.map((s) => {
+        const Block = blocks[s.type];
+        return (
+          <Section id={s.id} eyebrow={s.eyebrow} title={s.title} intro={s.intro} sub={s.sub}>
+            <Block {...s} lang={d.lang} />
+          </Section>
+        );
+      })
+    }
+  </main>
+  <footer class="footer">
+    <div class="wrap">
+      <span>Press Over × {d.client}</span>
+      <span class="muted">{t('by')}</span>
+    </div>
+  </footer>
+</Proposal>
+
+<style>
+  .footer { border-top: 1px solid var(--line); padding: 32px 0 48px; font-size: 14px; }
+  .footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+</style>

@@ -1,0 +1,40 @@
+---
+import { inline, md } from '../../lib/md';
+
+interface Phase { name: string; when?: string; body?: string; items: string[] }
+const { phases } = Astro.props as { phases: Phase[] };
+---
+
+<ol class="timeline">
+  {
+    phases.map((p, i) => (
+      <li class="phase">
+        <div class="marker"><span>{i + 1}</span></div>
+        <div class="card">
+          {p.when && <span class="when">{p.when}</span>}
+          <h3>{p.name}</h3>
+          {p.body && <div class="muted" set:html={md(p.body)} />}
+          {p.items.length > 0 && <ul class="list">{p.items.map((it) => <li set:html={inline(it)} />)}</ul>}
+        </div>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+  .phase { display: grid; grid-template-columns: 44px 1fr; gap: 18px; position: relative; }
+  .phase:not(:last-child)::before {
+    content: ''; position: absolute; left: 21px; top: 44px; bottom: -18px; width: 2px; background: var(--line);
+  }
+  .marker span {
+    display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+    background: var(--accent); color: var(--accent-ink); font: 700 17px/1 var(--font-display);
+  }
+  .when {
+    display: block; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  h3 { font-size: 22px; margin-bottom: 10px; }
+  .list { margin-top: 12px; }
+</style>

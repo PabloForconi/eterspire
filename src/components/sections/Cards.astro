@@ -1,0 +1,31 @@
+---
+import { inline, md } from '../../lib/md';
+
+interface Item { title: string; body?: string; items: string[]; note?: string; tag?: string }
+const { items, columns, notes } = Astro.props as { items: Item[]; columns: number; notes?: string };
+---
+
+<div class={`grid cols-${columns}`}>
+  {
+    items.map((item, i) => (
+      <article class="card">
+        <span class="num">{item.tag ?? String(i + 1).padStart(2, '0')}</span>
+        <h3>{item.title}</h3>
+        {item.body && <div class="muted" set:html={md(item.body)} />}
+        {item.items.length > 0 && <ul class="list">{item.items.map((it) => <li set:html={inline(it)} />)}</ul>}
+        {item.note && <div class="note" set:html={md(item.note)} />}
+      </article>
+    ))
+  }
+</div>
+{notes && <div class="notes prose" set:html={md(notes)} />}
+
+<style>
+  .card { display: flex; flex-direction: column; }
+  .num { display: block; font: 600 13px/1 var(--font-body); letter-spacing: 0.1em; color: var(--accent); margin-bottom: 18px; }
+  h3 { font-size: 21px; margin-bottom: 10px; }
+  .muted, .list { font-size: 16px; }
+  .list { margin-top: 6px; }
+  .note { margin-top: auto; padding-top: 16px; font-size: 15px; color: var(--text); }
+  .notes { margin-top: 28px; font-size: 17px; }
+</style>

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.astro/
+.env
+.env.*
+.DS_Store
+Thumbs.db
+
+# Raw material received for proposals (briefs, decks, source files) — not part of the site
+_material/
+.claude/settings.local.json
