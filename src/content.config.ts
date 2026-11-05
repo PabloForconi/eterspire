@@ -35,6 +35,8 @@ const sections = (image: SchemaContext['image']) =>
       body: z.string(),
       /** Renders the body as a highlighted box (e.g. a limited-time benefit). */
       callout: z.boolean().default(false),
+      /** Small print (e.g. payment terms): small heading and muted text. Use with `sub: true`. */
+      fine: z.boolean().default(false),
       image: image().optional(),
     }),
     z.object({

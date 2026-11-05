@@ -51,6 +51,12 @@ sections:
     callout: true             # highlighted box
     body: "**Sign before December** and the first month is free."
 
+  - type: text
+    sub: true
+    fine: true                # small print: small grey heading and text (payment terms, legal notes)
+    title: Payment and invoicing
+    body: Payment terms will be agreed between both parties.
+
   - type: stats
     title: Key numbers
     items:

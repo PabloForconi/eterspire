@@ -102,6 +102,13 @@ strong { color: var(--text); font-weight: 700; }
 }
 .section.sub .section-head .intro { font-size: 16px; margin-top: 10px; }
 .section:has(+ .section.sub) { padding-bottom: clamp(48px, 7vw, 80px); }
+/* Small print (fine: true): a quiet footnote under the previous block, no magenta rule. */
+.section:has(+ .section.fine) { padding-bottom: clamp(28px, 4vw, 40px); }
+.section.fine .section-head { margin-bottom: 6px; }
+.section.fine .section-head h3 { font-size: 14px; letter-spacing: 0; color: var(--muted); }
+.section.fine .section-head h3::before { display: none; }
+.section.fine .prose { font-size: 14px; color: var(--muted); max-width: 76ch; }
+.section.fine .prose p { margin: 0 0 6px; }
 
 .card {
   background: var(--surface);

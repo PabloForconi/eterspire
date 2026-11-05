@@ -171,19 +171,14 @@ sections:
     callout: true
     body: Si la colaboración comienza en diciembre de 2026, ese mes de comunicación en Press Over será bonificado. Así, Eterspire podrá iniciar su presencia en nuestros canales antes del período regular de contratación, sin costo adicional por diciembre.
 
-  - type: cards
+  - type: text
     sub: true
-    title: Condiciones comerciales
-    columns: 2
-    items:
-      - title: Pagos de Press Over
-        body: Los planes anual y semestral de comunicación podrán abonarse mediante transferencia bancaria en cuotas mensuales durante el período contratado. El plan mensual se abonará por el período correspondiente.
-      - title: Pago del patrocinio IDA 2027
-        body: La inversión correspondiente al patrocinio Main Sponsor de IDA 2027 se realizará mediante un único pago, una vez confirmada la participación de Eterspire.
-      - title: Facturación
-        body: Press Over podrá emitir factura tipo A para operaciones dentro de Argentina y factura tipo E para operaciones con clientes del exterior. Los importes expresados en pesos argentinos y dólares estadounidenses corresponden a los servicios indicados en cada apartado.
-      - title: Contratación conjunta
-        body: Los valores preferenciales de Main Sponsor de USD 4.000 y USD 3.000 corresponden, respectivamente, a la contratación simultánea de los planes semestral y anual de Press Over.
+    fine: true
+    title: Métodos de pago y facturación
+    body: |
+      Las condiciones y modalidades de pago se acordarán entre ambas partes, contemplando la posibilidad de realizar pagos mensuales o en cuotas, de acuerdo con las preferencias y posibilidades de la contratación.
+
+      Se podrán emitir facturas tipo A para operaciones dentro de Argentina y tipo E para operaciones con clientes del exterior.
 
   - type: cards
     eyebrow: Coordinación

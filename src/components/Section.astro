@@ -12,12 +12,14 @@ interface Props {
   sub?: boolean;
   tone?: 'light' | 'dark';
   logo?: ImageMetadata;
+  /** Small print: small heading and muted text. */
+  fine?: boolean;
 }
 
-const { id, eyebrow, title, intro, sub = false, tone = 'light', logo } = Astro.props;
+const { id, eyebrow, title, intro, sub = false, tone = 'light', logo, fine = false } = Astro.props;
 ---
 
-<section class:list={['section', { sub, 'tone-dark': tone === 'dark' }]} id={id}>
+<section class:list={['section', { sub, fine, 'tone-dark': tone === 'dark' }]} id={id}>
   <div class="wrap">
     <header class="section-head">
       {logo && <Image src={logo} alt="" height={104} class="section-logo" />}
