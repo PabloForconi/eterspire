@@ -40,6 +40,11 @@ magenta `#ff005b` (`--accent`; `--accent-strong` is a darker mix for small text 
 for headings and labels, Source Sans 3 for text, slanted magenta tags for eyebrows, short magenta rule above
 sub-section headings.
 
-## Pending
-- Eterspire assets (logo, key art) haven't been received; the cover shows the client name as text.
+## Eterspire assets
+`src/assets/proposals/eterspire/` holds the logo (`page_logo.png`) and the tavern key art (`tavern_background.webp`),
+downloaded from https://eterspire.com. Official links found there, in case the proposal needs them:
+Steam https://store.steampowered.com/app/2144600/Eterspire/, App Store https://apps.apple.com/us/app/eterspire/id1658183817/,
+Google Play https://play.google.com/store/apps/details?id=com.StonehollowWorkshop.Eterspire,
+Discord https://discord.com/servers/eterspire-814967791840264232, Reddit https://reddit.com/r/eterspire,
+X https://x.com/eterspire, Instagram https://www.instagram.com/eterspiremmo/.
 - No deploy target or Git remote yet. Git push uses SSH with the repo-local `core.sshCommand` (key `~/.ssh/DesktopPablo`).

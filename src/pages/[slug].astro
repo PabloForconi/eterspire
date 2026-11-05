@@ -41,7 +41,7 @@ const links = sections.filter((s) => !s.hideInNav && !s.sub).map((s) => ({ id: s
 
 <Proposal lang={d.lang} title={d.title} description={t('by')} accent={d.theme.accent}>
   <div id="top">
-    <Cover lang={d.lang} client={d.client} date={d.date} validUntil={d.validUntil} meta={d.meta} clientLogo={d.clientLogo} hero={d.hero} />
+    <Cover lang={d.lang} client={d.client} date={d.date} validUntil={d.validUntil} meta={d.meta} clientLogo={d.clientLogo} clientUrl={d.clientUrl} hero={d.hero} />
   </div>
   <Nav lang={d.lang} project={d.project} links={links} />
   <main class="panel">

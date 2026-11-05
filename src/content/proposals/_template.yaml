@@ -17,7 +17,8 @@ meta:                         # optional extra label/value pairs on the cover
 draft: false                 # true = kept in the repo but not built
 theme:
   accent: "#ff5a1f"           # optional, e.g. the client's brand color
-# clientLogo: ../../assets/proposals/<slug>/logo.png
+# clientLogo: ../../assets/proposals/<slug>/logo.png   # shown large next to the cover headline
+# clientUrl: https://client-site.com/                  # the cover logo and name link here
 
 hero:
   eyebrow: Commercial proposal

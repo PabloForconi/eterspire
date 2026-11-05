@@ -7,11 +7,15 @@ date: 2026-11-05
 meta:
   - { label: País, value: Argentina }
   - { label: Período, value: 2026/2027 }
+# Logo and key art from https://eterspire.com
+clientLogo: ../../assets/proposals/eterspire/logo.png
+clientUrl: https://eterspire.com/
 
 hero:
   eyebrow: Propuesta comercial
   headline: Eterspire × Press Over
   subhead: Comunicación, comunidad y desarrollo independiente
+  image: ../../assets/proposals/eterspire/key-art-tavern.webp
 
 sections:
   - type: text

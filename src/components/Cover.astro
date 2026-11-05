@@ -12,10 +12,11 @@ interface Props {
   validUntil?: Date;
   meta: { label: string; value: string }[];
   clientLogo?: ImageMetadata;
+  clientUrl?: string;
   hero: { eyebrow?: string; headline: string; subhead?: string; image?: ImageMetadata };
 }
 
-const { lang, client, date, validUntil, meta, clientLogo, hero } = Astro.props;
+const { lang, client, date, validUntil, meta, clientLogo, clientUrl, hero } = Astro.props;
 const t = useT(lang);
 ---
 
@@ -29,19 +30,25 @@ const t = useT(lang);
     <div class="brands">
       <Image src={pressOverLogo} alt="Press Over" height={72} class="po-logo" loading="eager" />
       <span class="x" aria-hidden="true">×</span>
-      {
-        clientLogo ? (
-          <Image src={clientLogo} alt={client} height={88} class="client-logo" loading="eager" />
-        ) : (
-          <span class="client-name">{client}</span>
-        )
-      }
+      {clientUrl ? <a class="client-name" href={clientUrl} target="_blank" rel="noopener">{client}</a> : <span class="client-name">{client}</span>}
     </div>
 
-    <div class="copy">
-      {hero.eyebrow && <div class="eyebrow"><span class="tag">{hero.eyebrow}</span></div>}
-      <h1>{hero.headline}</h1>
-      {hero.subhead && <div class="subhead" set:html={md(hero.subhead)} />}
+    <div class:list={['main', { 'has-logo': clientLogo }]}>
+      <div class="copy">
+        {hero.eyebrow && <div class="eyebrow"><span class="tag">{hero.eyebrow}</span></div>}
+        <h1>{hero.headline}</h1>
+        {hero.subhead && <div class="subhead" set:html={md(hero.subhead)} />}
+      </div>
+      {
+        clientLogo &&
+          (clientUrl ? (
+            <a href={clientUrl} target="_blank" rel="noopener" class="client-logo-link">
+              <Image src={clientLogo} alt={client} width={420} class="client-logo" loading="eager" />
+            </a>
+          ) : (
+            <Image src={clientLogo} alt={client} width={420} class="client-logo" loading="eager" />
+          ))
+      }
     </div>
 
     <dl class="meta">
@@ -55,10 +62,13 @@ const t = useT(lang);
 
 <style>
   .cover { position: relative; min-height: 92svh; display: flex; overflow: hidden; background: var(--frame); }
-  .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.4; }
+  .bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.5; }
+  /* Darken the art behind the text (left and bottom) so the copy stays readable. */
   .cover::after {
     content: ''; position: absolute; inset: 0;
-    background: linear-gradient(180deg, transparent 35%, var(--frame) 100%);
+    background:
+      linear-gradient(90deg, var(--frame) 0%, color-mix(in srgb, var(--frame) 75%, transparent) 45%, color-mix(in srgb, var(--frame) 20%, transparent) 100%),
+      linear-gradient(180deg, color-mix(in srgb, var(--frame) 40%, transparent) 0%, transparent 30%, var(--frame) 100%);
   }
   /* Thin magenta line at the very top, a nod to the site's accent bars. */
   .cover::before {
@@ -73,9 +83,20 @@ const t = useT(lang);
   .x { color: var(--muted); font: 500 22px/1 var(--font-display); }
   .client-name {
     font: 800 clamp(20px, 2.6vw, 28px)/1 var(--font-display); color: var(--text);
-    letter-spacing: 0.02em; text-transform: uppercase;
+    letter-spacing: 0.02em; text-transform: uppercase; text-decoration: none;
   }
-  .client-logo { height: clamp(32px, 4vw, 44px); width: auto; }
+  .main { display: grid; gap: 32px; align-items: center; }
+  .client-logo { width: clamp(200px, 26vw, 380px); height: auto; filter: drop-shadow(0 12px 32px rgb(0 0 0 / 0.55)); }
+  .client-logo-link { justify-self: start; }
+  @media (min-width: 900px) {
+    .main.has-logo { grid-template-columns: 1fr auto; gap: 48px; }
+    .client-logo-link, .main > .client-logo { justify-self: end; }
+  }
+  @media (max-width: 899px) {
+    /* On phones the logo leads, above the headline. */
+    .main.has-logo > :last-child { order: -1; }
+    .client-logo { width: min(240px, 60vw); }
+  }
   .copy { max-width: 960px; }
   h1 { font-size: clamp(44px, 8.4vw, 104px); font-weight: 900; letter-spacing: -0.04em; line-height: 1; }
   .subhead { margin-top: 24px; font-size: clamp(19px, 2.2vw, 24px); color: var(--body); max-width: 640px; }

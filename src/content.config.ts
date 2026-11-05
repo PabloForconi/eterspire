@@ -146,7 +146,10 @@ const proposals = defineCollection({
       draft: z.boolean().default(false),
       /** Per-proposal colors (e.g. the client's brand). Defaults live in src/styles/global.css. */
       theme: z.object({ accent: hex.optional() }).default({}),
+      /** Shown large next to the cover headline. */
       clientLogo: image().optional(),
+      /** The client's website; the cover logo links to it. */
+      clientUrl: z.url().optional(),
       hero: z.object({
         eyebrow: z.string().optional(),
         headline: z.string(),
