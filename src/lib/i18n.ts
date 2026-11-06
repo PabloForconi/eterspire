@@ -7,6 +7,7 @@ const strings = {
     validUntil: 'Valid until',
     recommended: 'Recommended',
     contents: 'Contents',
+    menu: 'Menu',
     by: 'A proposal by Press Over',
   },
   es: {
@@ -15,6 +16,7 @@ const strings = {
     validUntil: 'Válida hasta',
     recommended: 'Recomendado',
     contents: 'Contenido',
+    menu: 'Menú',
     by: 'Una propuesta de Press Over',
   },
 } as const;

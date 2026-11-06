@@ -10,6 +10,7 @@ interface Props {
    * Adds a first row with the Press Over logo (it scrolls away, like the
    * pressover.news header); only the row of section links stays fixed at the top.
    * Without it, the menu is a single fixed row with the links.
+   * On phones the logo moves into the fixed row and the links open from a menu button.
    */
   brand?: boolean;
 }
@@ -29,7 +30,11 @@ const t = useT(lang);
 }
 <nav class="nav tone-dark no-print" aria-label={t('contents')}>
   <div class="wrap row">
-    <ul class="links">
+    {brand && <a href="#top" class="nav-logo"><Image src={pressOverLogo} alt="Press Over" height={64} loading="eager" /></a>}
+    <button type="button" class="burger" aria-expanded="false" aria-controls="nav-links" aria-label={t('menu')}>
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="links" id="nav-links">
       {links.map((l) => <li><a href={`#${l.id}`} data-nav={l.id}>{l.label}</a></li>)}
     </ul>
   </div>
@@ -77,22 +82,35 @@ const t = useT(lang);
   fit();
   addEventListener('resize', fit);
   list?.addEventListener('scroll', fit, { passive: true });
+
+  // Phones: the menu button opens the links as a panel under the bar; picking a link closes it.
+  const nav = document.querySelector<HTMLElement>('.nav');
+  const burger = nav?.querySelector<HTMLButtonElement>('.burger');
+  const setOpen = (open: boolean) => {
+    nav?.classList.toggle('open', open);
+    burger?.setAttribute('aria-expanded', String(open));
+  };
+  burger?.addEventListener('click', () => setOpen(!nav?.classList.contains('open')));
+  links.forEach((a) => a.addEventListener('click', () => setOpen(false)));
+  addEventListener('keydown', (e) => e.key === 'Escape' && setOpen(false));
 </script>
 
 <style>
   .masthead, .nav { background: var(--frame); }
   .row { display: flex; align-items: center; gap: 20px; max-width: 1240px; }
 
-  .masthead .row { justify-content: space-between; padding-block: 18px 6px; }
+  .masthead .row { justify-content: center; padding-block: 18px 6px; }
   .brand { display: flex; align-items: center; }
   .brand-logo { height: clamp(24px, 3vw, 38px); width: auto; }
 
   .nav { position: sticky; top: 0; z-index: 10; border-bottom: 1px solid var(--line); }
   .nav .row { height: 54px; }
+  /* Centered; when the links don't fit, the row shrinks to the width and scrolls from the first link. */
   .links {
-    list-style: none; margin: 0; padding: 0; display: flex; gap: 4px; flex: 1; min-width: 0;
+    list-style: none; margin: 0 auto; padding: 0; display: flex; gap: 4px; min-width: 0;
     overflow-x: auto; scrollbar-width: none;
   }
+  .nav-logo, .burger { display: none; }
   .links::-webkit-scrollbar { display: none; }
   .links.overflowing { mask-image: linear-gradient(90deg, #000 calc(100% - 48px), transparent); }
   .links a {
@@ -100,13 +118,30 @@ const t = useT(lang);
     text-transform: uppercase; color: var(--body); text-decoration: none; white-space: nowrap;
     border-bottom: 3px solid transparent;
   }
-  /* The first link lines up with the logo above it. */
-  .links li:first-child a { padding-left: 0; }
   .links a:hover { color: var(--text); }
   .links a[aria-current] { color: var(--text); border-bottom-color: var(--accent); }
 
+  /* Phones: logo + menu button in the fixed bar, links in a panel that drops down from it. */
   @media (max-width: 640px) {
-    .nav .row { height: 48px; }
-    .links a { padding: 17px 9px 14px; font-size: 11px; }
+    .masthead { display: none; }
+    .nav .row { height: 48px; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; }
+    .nav-logo img { height: 22px; width: auto; }
+    .burger {
+      display: flex; flex-direction: column; justify-content: center; gap: 5px;
+      width: 40px; height: 40px; margin: 0 -8px 0 auto; padding: 8px; background: none; border: 0; cursor: pointer;
+    }
+    .burger span { display: block; height: 2px; background: var(--text); border-radius: 2px; transition: transform 0.2s, opacity 0.2s; }
+    .open .burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .open .burger span:nth-child(2) { opacity: 0; }
+    .open .burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .links, .links.overflowing {
+      display: none; position: absolute; top: 100%; left: 0; right: 0; margin: 0;
+      flex-direction: column; gap: 0; padding: 6px var(--gutter) 14px;
+      background: var(--frame); border-bottom: 1px solid var(--line); mask-image: none;
+    }
+    .nav.open .links { display: flex; }
+    .links a { padding: 14px 0 14px 12px; font-size: 13px; border-bottom: 0; border-left: 3px solid transparent; }
+    .links a[aria-current] { border-left-color: var(--accent); }
   }
 </style>
