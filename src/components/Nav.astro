@@ -7,16 +7,15 @@ interface Props {
   lang: Lang;
   links: { id: string; label: string }[];
   /**
-   * Adds a first row with the Press Over logo and the PDF button (it scrolls away, like the
+   * Adds a first row with the Press Over logo (it scrolls away, like the
    * pressover.news header); only the row of section links stays fixed at the top.
-   * Without it, the menu is a single fixed row with the links and the PDF button.
+   * Without it, the menu is a single fixed row with the links.
    */
   brand?: boolean;
 }
 
 const { lang, links, brand = false } = Astro.props;
 const t = useT(lang);
-const printButton = t('print');
 ---
 
 {
@@ -24,7 +23,6 @@ const printButton = t('print');
     <div class="masthead tone-dark no-print">
       <div class="wrap row">
         <a href="#top" class="brand"><Image src={pressOverLogo} alt="Press Over" height={96} class="brand-logo" loading="eager" /></a>
-        <button type="button" class="print" onclick="window.print()">{printButton}</button>
       </div>
     </div>
   )
@@ -34,7 +32,6 @@ const printButton = t('print');
     <ul class="links">
       {links.map((l) => <li><a href={`#${l.id}`} data-nav={l.id}>{l.label}</a></li>)}
     </ul>
-    {!brand && <button type="button" class="print" onclick="window.print()">{printButton}</button>}
   </div>
 </nav>
 
@@ -108,15 +105,7 @@ const printButton = t('print');
   .links a:hover { color: var(--text); }
   .links a[aria-current] { color: var(--text); border-bottom-color: var(--accent); }
 
-  .print {
-    font: 800 12px/1 var(--font-display); letter-spacing: 0.06em; text-transform: uppercase;
-    color: var(--accent-ink); background: var(--accent-strong); flex-shrink: 0;
-    border: 0; padding: 11px 20px 11px 14px; cursor: pointer; white-space: nowrap;
-    clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
-  }
-  .print:hover { background: var(--accent); }
   @media (max-width: 640px) {
-    .print { padding: 10px 16px 10px 10px; font-size: 11px; }
     .nav .row { height: 48px; }
     .links a { padding: 17px 9px 14px; font-size: 11px; }
   }

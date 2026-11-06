@@ -36,7 +36,7 @@ Rules:
 - `src/pages/index.astro` / `src/pages/[slug].astro`: routes (see step 1 above)
 - `src/components/ProposalPage.astro`: the whole proposal page; maps each block `type` to its component (add new
   types here and in the schema)
-- `src/components/`: `Cover` (banner + layouts), `Intro` (title card), `Nav` (Press Over logo + PDF row, then the
+- `src/components/`: `Cover` (banner + layouts), `Intro` (title card), `Nav` (Press Over logo row, then the
   fixed row of section links), `Section` wrapper, `sections/*` blocks
 - `src/lib/md.ts`: the light Markdown used in text fields; `src/lib/i18n.ts`: UI labels in en/es
 - `src/styles/global.css`: color tokens, light/dark tones (`.tone-dark`), shared bits (`.panel`, `.tag`, `.card`, `.list`) and print styles
