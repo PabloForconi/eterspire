@@ -50,6 +50,7 @@ sections:
     title: Limited-time benefit
     callout: true             # highlighted box
     body: "**Sign before December** and the first month is free."
+    notes: Optional text under the box (e.g. payment terms).
 
   - type: text
     sub: true
@@ -101,6 +102,19 @@ sections:
         features: [Feature one, Feature two]
         highlight: true       # adds the "Recommended" badge
     notes: Taxes, payment terms, etc.
+
+  # Plans with a switch "plan alone / plan + add-on": computes crossed-out list prices and savings.
+  # Labels inside the cards are Spanish only. All amounts in one currency.
+  - type: plans
+    title: Investment
+    currency: ARS
+    monthly: 1000000                # monthly list price (base for every saving)
+    monthlyLabel: Difusión en Press Over
+    addon: { name: Main Sponsor IDA 2027, short: IDA 2027, price: 7500000 }
+    options: [Press Over, Press Over + IDA 2027]
+    plans:
+      - { name: Anual, months: 12, price: 9600000, addonPrice: 4050000 }
+      - { name: Semestral, months: 6, price: 5100000, addonPrice: 5025000 }
 
   - type: cases
     title: Past work

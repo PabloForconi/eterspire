@@ -13,6 +13,7 @@ import Stats from './sections/Stats.astro';
 import Timeline from './sections/Timeline.astro';
 import Table from './sections/Table.astro';
 import Pricing from './sections/Pricing.astro';
+import Plans from './sections/Plans.astro';
 import Cases from './sections/Cases.astro';
 import Team from './sections/Team.astro';
 import Contact from './sections/Contact.astro';
@@ -31,7 +32,7 @@ const layout = Astro.props.layout ?? d.hero.layout;
 const t = useT(d.lang);
 
 /** Section `type` → component. Add a block type here and in src/content.config.ts. */
-const blocks = { text: Text, cards: Cards, stats: Stats, timeline: Timeline, table: Table, pricing: Pricing, cases: Cases, team: Team, contact: Contact };
+const blocks = { text: Text, cards: Cards, stats: Stats, timeline: Timeline, table: Table, pricing: Pricing, plans: Plans, cases: Cases, team: Team, contact: Contact };
 
 // Sub-sections continue the section before them, so they take its tone unless they set their own.
 let parentTone: 'light' | 'dark' = 'light';

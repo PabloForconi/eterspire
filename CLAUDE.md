@@ -16,8 +16,8 @@ Node is installed at `C:\Program Files\nodejs` (add it to PATH in new shells).
    served at the site root; with several, each one is at `/<slug>/` and the root lists them.
    Files starting with `_` are not built; `draft: true` keeps a proposal out of the build.
 2. `lang` (`en` | `es`) sets the UI labels; write the content in that language.
-3. Sections render in file order. Block types: `text`, `cards`, `stats`, `timeline`, `table`, `pricing`, `cases`,
-   `team`, `contact`. `sub: true` makes a block continue the previous section (no divider, smaller heading, no menu entry).
+3. Sections render in file order. Block types: `text`, `cards`, `stats`, `timeline`, `table`, `pricing`, `plans`
+   (plans with a "plan alone / plan + add-on" switch that computes savings), `cases`, `team`, `contact`. `sub: true` makes a block continue the previous section (no divider, smaller heading, no menu entry).
    `tone: dark` turns a section into a dark band (sub-sections inherit it); `logo` shows an image above the title.
 4. `hero.layout` picks the cover: `ficha` (used for Eterspire: banner with the client logo, dark title card resting
    on it), `cabezal` (same, card below the banner) or `clasica` (Press Over logo and title inside a full-screen cover).

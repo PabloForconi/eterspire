@@ -146,50 +146,35 @@ sections:
       - title: Un premio presentado por Eterspire
         body: Eterspire presentará uno de los premios de IDA 2027, vinculando su participación con el reconocimiento al talento y la creatividad de los desarrolladores independientes. La categoría, modalidad y características del premio se definirán junto a la organización.
 
-  - type: text
+  # IDA prices in pesos at USD 1 = ARS 1.500 (Main Sponsor reference USD 5.000).
+  - type: plans
     eyebrow: Propuesta económica
     nav: Inversión
     id: inversion
     title: La inversión
-    body: |
-      La alianza contempla dos componentes: la difusión de Eterspire durante el período contratado con Press Over y su participación como Main Sponsor de IDA 2027. La contratación conjunta permite acceder a un valor preferencial para el patrocinio del evento.
-
-  - type: pricing
-    sub: true
-    title: Difusión de Eterspire en Press Over
-    packages:
-      - { name: Anual, price: ARS 10.000.000, period: 12 meses }
-      - { name: Semestral, price: ARS 5.000.000, period: 6 meses }
-      - { name: Mensual, price: ARS 1.000.000, period: 1 mes }
-    notes: Los planes anual y semestral pueden abonarse mediante pagos mensuales durante el período contratado.
-
-  - type: table
-    sub: true
-    title: Eterspire como Main Sponsor de IDA 2027
     intro: |
-      El valor de referencia del patrocinio Main Sponsor es de **USD 5.000**. Al contratar simultáneamente un plan de difusión con Press Over, Eterspire accede a las siguientes condiciones preferenciales:
-    columns: [Contratación de Press Over, "Main Sponsor\nIDA 2027"]   # \n = line break on phones
-    align: [left, right]
-    rows:
-      - [Sin plan de difusión, USD 5.000]
-      - [Plan semestral · 6 meses, USD 4.000]
-      - [Plan anual · 12 meses, USD 3.000]
-    notes: Con el plan semestral, el beneficio representa un ahorro de USD 1.000 sobre el valor de referencia. Con el plan anual, el ahorro es de USD 2.000.
+      La alianza contempla dos componentes: la difusión de Eterspire durante el período contratado con Press Over y su participación como Main Sponsor de IDA 2027. La contratación conjunta permite acceder a un valor preferencial para el patrocinio del evento.
+    currency: ARS
+    monthly: 1000000
+    monthlyLabel: Difusión en Press Over
+    addon: { name: Main Sponsor IDA 2027, short: IDA 2027, price: 7500000 }
+    options: [Press Over, Press Over + IDA 2027]
+    plans:
+      - { name: Anual, months: 12, price: 9600000, addonPrice: 4050000 }      # 20% solo; 30% con IDA
+      - { name: Semestral, months: 6, price: 5100000, addonPrice: 5025000 }   # 15% solo; 25% con IDA
 
   - type: text
     sub: true
-    title: Un mes para comenzar antes
+    title: Un beneficio para comenzar
     callout: true
-    body: Si la colaboración comienza en diciembre de 2026, ese mes de presencia en Press Over será bonificado. Así, Eterspire podrá iniciar su presencia en nuestros canales antes del período regular de contratación, sin costo adicional por diciembre.
+    body: Si se elige alguna de las modalidades de colaboración propuestas, ofrecemos la posibilidad de comenzar en diciembre de 2026, bonificando íntegramente ese primer mes. De esta manera, podrán iniciar las acciones de difusión y aprovechar ese período adicional sin costo.
+    notes: |
+      **Formas de pago**
 
-  - type: text
-    sub: true
-    fine: true
-    title: Métodos de pago y facturación
-    body: |
-      Las condiciones y modalidades de pago se acordarán entre ambas partes, contemplando la posibilidad de realizar pagos mensuales o en cuotas, de acuerdo con las preferencias y posibilidades de la contratación.
+      - **Cuotas trimestrales a precio fijo:** 2 cuotas en el plan semestral y 3 en el plan anual.
+      - **Cuotas mensuales:** ajustadas mensualmente según el Índice de Precios al Consumidor (IPC) del INDEC.
 
-      Se podrán emitir facturas tipo A para operaciones dentro de Argentina y tipo E para operaciones con clientes del exterior.
+      Si se suma la participación en IDA 2027, el valor del Main Sponsor se distribuye entre las cuotas del plan elegido.
 
   - type: cards
     eyebrow: Requisitos

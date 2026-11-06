@@ -1,0 +1,164 @@
+---
+/**
+ * Plans with a switch between the plan alone and the plan + an add-on (e.g. a sponsorship): two reference
+ * cards on top (monthly price and add-on price), then one card per plan with the list price crossed out,
+ * the saving and, with the add-on, the total. Everything in one currency. Labels are Spanish only.
+ */
+interface Plan { name: string; months: number; price: number; addonPrice: number }
+interface Data {
+  currency: string;
+  monthly: number;
+  monthlyLabel: string;
+  addon: { name: string; short: string; price: number };
+  options: [string, string];
+  refsLabel: string;
+  plans: Plan[];
+}
+const { currency, monthly, monthlyLabel, addon, options, refsLabel, plans } = Astro.props as Data;
+
+const n = (v: number) => `${currency} ${Math.round(v).toLocaleString('es-AR')}`;
+const pct = (save: number, list: number) => Math.round((save / list) * 100);
+const rows = plans.map((p) => {
+  const list = monthly * p.months;
+  const total = p.price + p.addonPrice;
+  const totalList = list + addon.price;
+  return {
+    ...p,
+    only: { list, price: p.price, save: list - p.price, pct: pct(list - p.price, list) },
+    combo: { list: totalList, price: total, save: totalList - total, pct: pct(totalList - total, totalList) },
+    addonSave: addon.price - p.addonPrice,
+  };
+});
+const refs = [
+  { name: monthlyLabel, price: monthly, meta: 'Por mes' },
+  { name: addon.name, price: addon.price, meta: 'Pago único' },
+];
+---
+
+<div class="plans" data-mode="only">
+  <div class="refs">
+    <div class="refs-label">{refsLabel}</div>
+    <div class="grid cols-2">
+      {refs.map((r) => (
+        <article class="card ref">
+          <h3>{r.name}</h3>
+          <div class="price">{n(r.price)}</div>
+          <div class="meta">{r.meta}</div>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <div class="switch" role="group" aria-label={`${options[0]} / ${options[1]}`}>
+    <button type="button" data-set="only" aria-pressed="true">{options[0]}</button>
+    <button type="button" data-set="combo" aria-pressed="false">{options[1]}</button>
+  </div>
+
+  <div class={`grid cols-${Math.min(rows.length, 3)}`}>
+    {
+      rows.map((p) => (
+        <article class:list={['card', 'plan', { saving: p.combo.save > 0 }]}>
+          {(['only', 'combo'] as const).map((mode) => {
+            const v = p[mode];
+            return (
+              <div class={`view ${mode}`}>
+                <header>
+                  <h3>{p.name}</h3>
+                  {/* Without a saving, invisible copies keep the price at the same height as in the other cards. */}
+                  <span class:list={['badge', { ghost: v.save <= 0 }]} aria-hidden={v.save <= 0 ? 'true' : undefined}>Ahorrás un {v.pct}%</span>
+                </header>
+                <div>
+                  <s class:list={['was', { ghost: v.save <= 0 }]} aria-hidden={v.save <= 0 ? 'true' : undefined}>{n(v.list)}</s>
+                  <div class="price">{n(v.price)}</div>
+                  <div class="meta">
+                    {p.months} {p.months === 1 ? 'mes' : 'meses'}
+                    {mode === 'only' && p.months > 1 && <> · equivale a {n(p.price / p.months)}/mes</>}
+                    {mode === 'combo' && ` de difusión + ${addon.short}`}
+                  </div>
+                </div>
+                {mode === 'combo' && (
+                  <dl class="breakdown">
+                    <div><dt>{monthlyLabel}</dt><dd><s class:list={{ ghost: p.only.save <= 0 }}>{n(p.only.list)}</s> {n(p.price)}</dd></div>
+                    <div><dt>{addon.name}</dt><dd><s class:list={{ ghost: p.addonSave <= 0 }}>{n(addon.price)}</s> {n(p.addonPrice)}</dd></div>
+                  </dl>
+                )}
+                <p class="save">
+                  {mode === 'combo' ? (
+                    <>Ahorrás <strong>{n(v.save)}</strong> en total.</>
+                  ) : (
+                    <><strong>{n(v.save)}</strong> menos frente al plan mensual.</>
+                  )}
+                </p>
+              </div>
+            );
+          })}
+        </article>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  for (const box of document.querySelectorAll<HTMLElement>('.plans')) {
+    const buttons = box.querySelectorAll<HTMLButtonElement>('[data-set]');
+    for (const b of buttons) {
+      b.addEventListener('click', () => {
+        box.dataset.mode = b.dataset.set;
+        for (const o of buttons) o.setAttribute('aria-pressed', String(o === b));
+      });
+    }
+  }
+</script>
+
+<style>
+  .refs { margin-bottom: 36px; }
+  .refs-label { font: 800 12px/1 var(--font-display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .ref { display: flex; flex-direction: column; gap: 10px; padding: 22px 28px; }
+  .ref h3 { color: var(--text); }
+  .ref .price { font-size: clamp(22px, 2vw, 26px); }
+  .ref .meta { margin-top: 0; }
+
+  .switch {
+    display: flex; width: fit-content; gap: 4px; padding: 4px; margin: 0 auto 28px;
+    background: var(--surface); border-radius: 999px;
+  }
+  .switch button {
+    font: 700 14px/1 var(--font-display); color: var(--text); background: none; border: 0;
+    padding: 12px 20px; border-radius: 999px; cursor: pointer;
+  }
+  .switch button[aria-pressed='true'] { background: var(--frame); color: #fff; }
+
+  .plan { padding: 28px; background: var(--bg); border: 1px solid var(--line); }
+  .plan.saving { border-color: var(--accent); }
+  .view { display: flex; flex-direction: column; gap: 16px; height: 100%; }
+  header { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+  h3 { font: 800 13px/1 var(--font-display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-text); }
+  .badge {
+    font: 800 12px/1 var(--font-display); padding: 7px 10px; border-radius: 6px;
+    background: var(--accent-strong); color: #fff; white-space: nowrap;
+  }
+  .was { display: block; color: var(--muted); font-size: 15px; margin-bottom: 2px; }
+  .ghost { visibility: hidden; }
+  .price { font: 900 clamp(26px, 2.6vw, 34px)/1.1 var(--font-display); color: var(--text); letter-spacing: -0.03em; white-space: nowrap; }
+  .meta { color: var(--muted); font-size: 14px; margin-top: 6px; }
+  .breakdown { margin: 0; border-top: 1px solid var(--line); padding-top: 14px; display: grid; gap: 10px; font-size: 14px; }
+  .breakdown div { display: flex; justify-content: space-between; gap: 12px; }
+  .breakdown dt { color: var(--muted); }
+  .breakdown dd { margin: 0; font-weight: 700; color: var(--text); text-align: right; }
+  .breakdown s { display: block; font-weight: 400; color: var(--muted); }
+  .save { margin: auto 0 0; padding-top: 4px; font-size: 15px; }
+
+  /* Mode switch: the plan alone vs plan + add-on. */
+  .plans[data-mode='only'] .view.combo, .plans[data-mode='combo'] .view.only { display: none; }
+
+  @media (max-width: 640px) {
+    .switch { width: auto; }
+    .switch button { flex: 1; padding: 12px 6px; font-size: 13px; white-space: nowrap; }
+  }
+  /* On paper both views are printed, one under the other. */
+  @media print {
+    .switch { display: none; }
+    .plans .view { display: flex !important; }
+    .view.combo { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--line); }
+  }
+</style>

@@ -37,6 +37,8 @@ const sections = (image: SchemaContext['image']) =>
       callout: z.boolean().default(false),
       /** Small print (e.g. payment terms): small heading and muted text. Use with `sub: true`. */
       fine: z.boolean().default(false),
+      /** Text under the body or callout (e.g. payment terms). */
+      notes: z.string().optional(),
       image: image().optional(),
     }),
     z.object({
@@ -98,6 +100,20 @@ const sections = (image: SchemaContext['image']) =>
         )
         .min(1),
       notes: z.string().optional(),
+    }),
+    z.object({
+      ...base(image),
+      /** Plans with a switch "plan alone / plan + add-on" that computes list prices and savings. */
+      type: z.literal('plans'),
+      currency: z.string(),
+      /** Monthly list price: the base for every saving. */
+      monthly: z.number(),
+      monthlyLabel: z.string(),
+      addon: z.object({ name: z.string(), short: z.string(), price: z.number() }),
+      /** The two switch labels: plan alone, plan + add-on. */
+      options: z.tuple([z.string(), z.string()]),
+      refsLabel: z.string().default('Valores de referencia'),
+      plans: z.array(z.object({ name: z.string(), months: z.number(), price: z.number(), addonPrice: z.number() })),
     }),
     z.object({
       ...base(image),

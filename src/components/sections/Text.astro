@@ -2,17 +2,19 @@
 import { Image } from 'astro:assets';
 import { md } from '../../lib/md';
 
-const { body, image, callout } = Astro.props;
+const { body, image, callout, notes } = Astro.props;
 ---
 
 <div class:list={['text', { 'with-image': image }]}>
   <div class:list={['prose', { callout }]} set:html={md(body)} />
   {image && <Image src={image} alt="" widths={[480, 960]} sizes="(min-width: 900px) 45vw, 100vw" class="media" />}
 </div>
+{notes && <div class="notes prose" set:html={md(notes)} />}
 
 <style>
   .text { font-size: 17px; }
   .media { border-radius: var(--radius); }
+  .notes { margin-top: 36px; font-size: 15px; max-width: 76ch; }
   .callout {
     max-width: 860px; padding: 32px 36px; border-radius: var(--radius);
     background: var(--accent-strong); color: #fff; --text: #fff;
