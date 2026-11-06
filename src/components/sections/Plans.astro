@@ -82,7 +82,7 @@ const refs = [
                     <div><dt>{addon.name}</dt><dd><s class:list={{ ghost: p.addonSave <= 0 }}>{n(addon.price)}</s> {n(p.addonPrice)}</dd></div>
                   </dl>
                 )}
-                <p class="save"><strong>{n(v.save)}</strong> menos frente al plan mensual.</p>
+                <p class="save"><strong>{n(v.save)}</strong> menos frente al plan {mode === 'combo' ? 'total' : 'mensual'}.</p>
               </div>
             );
           })}
