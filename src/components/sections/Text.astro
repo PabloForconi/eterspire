@@ -2,18 +2,35 @@
 import { Image } from 'astro:assets';
 import { md } from '../../lib/md';
 
-const { body, image, callout, notes } = Astro.props;
+const { body, image, callout, notes, video } = Astro.props;
+// Accepts watch, youtu.be, embed and Shorts links.
+const videoId = video?.match(/(?:shorts\/|v=|youtu\.be\/|embed\/)([\w-]{11})/)?.[1];
 ---
 
-<div class:list={['text', { 'with-image': image }]}>
+<div class:list={['text', { 'with-image': image, 'with-video': videoId }]}>
   <div class:list={['prose', { callout }]} set:html={md(body)} />
   {image && <Image src={image} alt="" widths={[480, 960]} sizes="(min-width: 900px) 45vw, 100vw" class="media" />}
+  {
+    videoId && (
+      <div class="video no-print">
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0`}
+          title="Video de YouTube"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        />
+      </div>
+    )
+  }
 </div>
 {notes && <div class="notes prose" set:html={md(notes)} />}
 
 <style>
   .text { font-size: 17px; }
   .media { border-radius: var(--radius); }
+  .video { width: 100%; max-width: 340px; aspect-ratio: 9 / 16; border-radius: var(--radius); overflow: hidden; background: var(--frame); }
+  .video iframe { display: block; width: 100%; height: 100%; border: 0; }
   .notes { margin-top: 36px; font-size: 15px; max-width: 76ch; }
   .callout {
     max-width: 860px; padding: 32px 36px; border-radius: var(--radius);
@@ -22,6 +39,10 @@ const { body, image, callout, notes } = Astro.props;
   .callout :global(strong) { font-family: var(--font-display); font-weight: 800; font-size: 18px; line-height: 1.4; letter-spacing: -0.01em; }
   @media (min-width: 900px) {
     .with-image { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
+    .with-video { display: grid; grid-template-columns: 1fr 340px; gap: 56px; align-items: start; }
   }
-  @media (max-width: 899px) { .media { margin-top: 28px; } }
+  @media (max-width: 899px) {
+    .media { margin-top: 28px; }
+    .video { margin: 32px auto 0; }
+  }
 </style>

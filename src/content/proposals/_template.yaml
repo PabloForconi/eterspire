@@ -44,6 +44,7 @@ sections:
       - A bullet
       - Another bullet
     # image: ../../assets/proposals/<slug>/screenshot.jpg
+    # video: https://youtube.com/shorts/<id>   # vertical video next to the text
 
   - type: text
     sub: true

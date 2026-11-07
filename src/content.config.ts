@@ -40,6 +40,8 @@ const sections = (image: SchemaContext['image']) =>
       /** Text under the body or callout (e.g. payment terms). */
       notes: z.string().optional(),
       image: image().optional(),
+      /** YouTube link (video or Short) shown vertically next to the body on wide screens, under it on phones. */
+      video: z.string().url().optional(),
     }),
     z.object({
       ...base(image),
