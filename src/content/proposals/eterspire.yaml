@@ -122,7 +122,7 @@ sections:
       - ../../assets/proposals/eterspire/club-3.webp
 
   - type: text
-    eyebrow: Indie Dev Argentina 2027 (IDA)
+    eyebrow: Indie Dev Argentina 2027
     nav: IDA 2027
     id: ida-2027
     tone: dark
