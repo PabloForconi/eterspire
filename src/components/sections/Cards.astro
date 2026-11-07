@@ -20,7 +20,7 @@ const { items, columns, notes, photos = [] } = Astro.props as { items: Item[]; c
     ))
   }
 </div>
-{notes && <div class="notes prose" set:html={md(notes)} />}
+{notes && <div class="notes muted" set:html={md(notes)} />}
 {
   photos.length > 0 && (
     <div class="photos" style={`--n: ${photos.length}`}>
@@ -36,7 +36,8 @@ const { items, columns, notes, photos = [] } = Astro.props as { items: Item[]; c
   .muted, .list { font-size: 15px; }
   .list { margin-top: 6px; }
   .note { margin-top: auto; padding-top: 14px; font-size: 15px; font-weight: 600; color: var(--text); }
-  .notes { margin-top: 24px; font-size: 16px; }
+  /* Footnote, same as the one under tables. */
+  .notes { margin-top: 20px; font-size: 14px; max-width: 76ch; }
   /* One row, every photo cropped to the same frame. */
   .photos { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 16px; margin-top: 40px; }
   .photos img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius); }
