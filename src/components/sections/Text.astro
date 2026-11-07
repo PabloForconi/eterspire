@@ -1,15 +1,23 @@
 ---
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import { md } from '../../lib/md';
 
-const { body, image, callout, notes, video } = Astro.props;
+const { body, image, callout, notes, video, photos = [] } = Astro.props;
 // Accepts watch, youtu.be, embed and Shorts links.
 const videoId = video?.match(/(?:shorts\/|v=|youtu\.be\/|embed\/)([\w-]{11})/)?.[1];
 ---
 
-<div class:list={['text', { 'with-image': image, 'with-video': videoId }]}>
+<div class:list={['text', { 'with-image': image, 'with-video': videoId, 'with-photos': photos.length }]}>
   <div class:list={['prose', { callout }]} set:html={md(body)} />
   {image && <Image src={image} alt="" widths={[480, 960]} sizes="(min-width: 900px) 45vw, 100vw" class="media" />}
+  {
+    photos.length > 0 && (
+      <div class="photos">
+        {photos.map((p: ImageMetadata) => <Image src={p} alt="" widths={[480, 960]} sizes="(min-width: 900px) 420px, (min-width: 641px) 50vw, 100vw" />)}
+      </div>
+    )
+  }
   {
     videoId && (
       <div class="video no-print">
@@ -40,9 +48,15 @@ const videoId = video?.match(/(?:shorts\/|v=|youtu\.be\/|embed\/)([\w-]{11})/)?.
   @media (min-width: 900px) {
     .with-image { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
     .with-video { display: grid; grid-template-columns: 1fr 340px; gap: 56px; align-items: start; }
+    .with-photos { display: grid; grid-template-columns: 1fr 420px; gap: 56px; align-items: start; }
   }
+  /* Same frame as the photo row under cards; stacked beside the text, side by side under it on tablets. */
+  .photos { display: grid; gap: 16px; }
+  .photos img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius); }
   @media (max-width: 899px) {
     .media { margin-top: 28px; }
     .video { margin: 32px auto 0; }
+    .photos { margin-top: 32px; grid-template-columns: 1fr 1fr; }
   }
+  @media (max-width: 640px) { .photos { grid-template-columns: 1fr; } }
 </style>

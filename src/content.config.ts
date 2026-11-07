@@ -42,6 +42,8 @@ const sections = (image: SchemaContext['image']) =>
       image: image().optional(),
       /** YouTube link (video or Short) shown vertically next to the body on wide screens, under it on phones. */
       video: z.string().url().optional(),
+      /** Photos stacked next to the body on wide screens (under it on phones), all cropped to the same size. */
+      photos: z.array(image()).default([]),
     }),
     z.object({
       ...base(image),

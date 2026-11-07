@@ -136,6 +136,9 @@ sections:
       Organizado por Press Over, IDA reúne a **desarrolladores, estudios, profesionales, estudiantes y entusiastas de la industria**, generando un espacio de encuentro, intercambio y visibilidad para los proyectos que forman parte del ecosistema local.
 
       La participación de Eterspire como Main Sponsor representa una oportunidad para **seguir fortaleciendo su vínculo con la comunidad de desarrollo**, compartir la experiencia de Stonehollow Workshop y acompañar el crecimiento de una industria de la que el propio estudio forma parte.
+    photos:
+      - ../../assets/proposals/eterspire/ida-2026-1.webp
+      - ../../assets/proposals/eterspire/ida-2026-2.webp
 
   - type: cards
     sub: true
