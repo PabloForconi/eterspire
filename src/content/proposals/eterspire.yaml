@@ -116,6 +116,10 @@ sections:
       - title: Acciones especiales
         body: Dinámicas puntuales para promover la participación de la comunidad y generar nuevas oportunidades de difusión.
     notes: La disponibilidad, las características y las condiciones de estos beneficios se definirán junto al equipo de Eterspire.
+    photos:
+      - ../../assets/proposals/eterspire/club-1.webp
+      - ../../assets/proposals/eterspire/club-2.png
+      - ../../assets/proposals/eterspire/club-3.webp
 
   - type: text
     eyebrow: Indie Dev Argentina 2027 (IDA)

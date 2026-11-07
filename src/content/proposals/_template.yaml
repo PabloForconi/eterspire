@@ -75,6 +75,8 @@ sections:
         items: [Bullet one, Bullet two]   # bullets inside the card
         note: Closing line at the bottom of the card.
     notes: Optional text under the cards.
+    # photos:                 # one row of photos at the end, all cropped to the same size
+    #   - ../../assets/proposals/<slug>/photo-1.jpg
 
   - type: timeline
     title: Plan

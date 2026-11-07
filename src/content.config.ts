@@ -62,6 +62,8 @@ const sections = (image: SchemaContext['image']) =>
         )
         .min(1),
       notes: z.string().optional(),
+      /** Photos in one row at the end of the section, all cropped to the same size. */
+      photos: z.array(image()).default([]),
     }),
     z.object({
       ...base(image),

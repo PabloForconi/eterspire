@@ -1,8 +1,10 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import { inline, md } from '../../lib/md';
 
 interface Item { title: string; body?: string; items: string[]; note?: string; tag?: string }
-const { items, columns, notes } = Astro.props as { items: Item[]; columns: number; notes?: string };
+const { items, columns, notes, photos = [] } = Astro.props as { items: Item[]; columns: number; notes?: string; photos?: ImageMetadata[] };
 ---
 
 <div class={`grid cols-${columns}`}>
@@ -19,6 +21,13 @@ const { items, columns, notes } = Astro.props as { items: Item[]; columns: numbe
   }
 </div>
 {notes && <div class="notes prose" set:html={md(notes)} />}
+{
+  photos.length > 0 && (
+    <div class="photos" style={`--n: ${photos.length}`}>
+      {photos.map((p) => <Image src={p} alt="" widths={[400, 720]} sizes="(min-width: 641px) 30vw, 100vw" />)}
+    </div>
+  )
+}
 
 <style>
   .card { display: flex; flex-direction: column; }
@@ -28,4 +37,8 @@ const { items, columns, notes } = Astro.props as { items: Item[]; columns: numbe
   .list { margin-top: 6px; }
   .note { margin-top: auto; padding-top: 14px; font-size: 15px; font-weight: 600; color: var(--text); }
   .notes { margin-top: 24px; font-size: 16px; }
+  /* One row, every photo cropped to the same frame. */
+  .photos { display: grid; grid-template-columns: repeat(var(--n), 1fr); gap: 16px; margin-top: 40px; }
+  .photos img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--radius); }
+  @media (max-width: 640px) { .photos { grid-template-columns: 1fr; } }
 </style>
